@@ -1,0 +1,51 @@
+/*------ color-1 css ------*/
+/*------ #20ad95 ------*/
+.themeioan_event .date, #footer .widget_search .search-submit, .not-found input[type=submit], .post-password-form input[type=submit], .wpcf7 input[type=submit], input[type=submit].vultur_btn, .order-button-payment input, .woocommerce #payment #place_order, .woocommerce-page #payment #place_order, body .cat_sidebar .widget-title_wrapper .widget-title:before, body #footer .widget-title_wrapper .widget-title:before, .sl_read_more, .sl_read_more:visited {
+	background: #20ad95;
+}
+.vultur_footer_wrapper ul li a i:hover, .vultur_services_slider_text span, .self_product_section a.self_add_to_cart i, .self_sale, .widget_product_search button, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle, .woocommerce .widget_price_filter .ui-slider .ui-slider-range, .widget_price_filter .price_slider_amount button, .select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[data-selected], .self_service_img span, .self_service_img:after, .self_service_slider .owl-theme .owl-dots .owl-dot.active span, .product_slider .owl-nav .owl-next, .product_slider .owl-nav .owl-prev, .product_slider .owl-nav .owl-next:hover, .product_slider .owl-nav .owl-prev:hover, .self_header::-webkit-scrollbar-thumb, .self_section_body .self_page_sections::-webkit-scrollbar-thumb, .cat_sidebar .widget .tagcloud a:hover, #footer .widget .tagcloud a:hover, .cat_sidebar .widget_search .search-submit, #footer .widget_search .search-submit, .vultur_btn, .self-cart-dropdown a.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce a.button.alt, .woocommerce button.button, .woocommerce button.button.alt, .woocommerce div.product form.cart .button, .woocommerce input.button, .woocommerce-page a.button, .xoo-cp-container a.xcp-btn {
+	background-color: #20ad95;
+}
+.basket-item-count,
+.self_sale {
+	background-color: #f76c6c;
+}
+.layout2 .single-features-light .feature_link_light a:hover, .header-search i, .course-price, .base-color, a:hover, #header .navbar-nav>li>a:hover, #header .navbar-default .navbar-nav>li>a:hover, .footer-social i:hover, .secondary-color, #header .navbar-nav a.active, #header .active, .header-content.page-header-content .page-header-text h1, .header-content.page-header-content .page-header-text h2, .header-content.page-header-content .page-header-text h3, .header-content.page-header-content .page-header-text h4, .header-content.page-header-content .page-header-text h5, .header-content.page-header-content .page-header-text h6, .video-btn:hover, .readmore, .themeioan_event ul li i, .vultur_heading p, .vultur_about_learnbox_left:hover .vultur_about_learnbox_year h1, .vultur_about_learnbox_right:hover .vultur_about_learnbox_year h1, .vultur_about_experiencebox:hover .vultur_about_experience_year h1, .vultur_contact_info span, .vultur_contact_details_box p a:hover, .vultur_footer_wrapper p a, .vultur_footer_wrapper p a:hover, .hentry .entry-footer a, .hentry .entry-title a:hover, .entry-meta a, .entry-meta a:hover, dl dd a, table th a, .sl_read_more:focus, .sl_read_more:hover, .cat_sidebar .widget ul li a:hover, #footer .widget ul li a:hover, .cat_sidebar .widget_rss .rsswidget, #footer .widget_rss .rsswidget, .cat_sidebar .widget_calendar tr a, #footer .widget_calendar tr a, .ed_comment_text h5 a:hover, .comment-respond a:hover, td#today, .vultur_footer p a:hover, .vultur_blog_section .blog_text .post_meta span a, .vultur_blog_section .blog_text .post_meta span a:hover, .vultur_blog_section .blog_text h4 a:hover, .vultur_blog_section a:hover, .vultur_close_wrapper span.vultur_about, .vultur_close_wrapper span.vultur_service, .vultur_close_wrapper span.vultur_contact, .vultur_close_wrapper span.vultur_portfolio, .woocommerce.widget .product-title:hover, .woocommerce a:hover, .woocommerce-info::before, .self_product_section a.added_to_cart, .comment-respond a, .comment-respond a:visited, .hs_color_set .header_switcher ul.header_tabs li:hover a, .woocommerce-page .woocommerce-message:before, .woocommerce-page .woocommerce-info:before, .woocommerce-page .woocommerce-error:before, .woocommerce-page .woocommerce-message a, .woocommerce-page .woocommerce-info a, .woocommerce-page .woocommerce-error a, .woocommerce-info::before, .coupon-accordion span:hover, p.lost-password a:hover, .country-select label span.required, .checkout-form-list label span.required, .woocommerce .your-order-table table tr.order-total td span, .showcoupon, .self-resume-download .vultur_btn:focus, .self-resume-download .vultur_btn:hover, .widget_product_search button:hover, .widget_price_filter .price_slider_amount button:hover {
+	color: #f76c6c;  
+}
+.fw-iconbox-1 .fw-iconbox-image, .fw-iconbox-2 .fw-iconbox-image, .woocommerce-MyAccount-navigation>ul>li.is-active>a, .woocommerce-MyAccount-navigation>ul>li:hover a, .woocommerce #respond input#submit.loading::after, .woocommerce a.button.loading::after, .woocommerce button.button.loading::after, .woocommerce input.button.loading::after, .copyright a:visited, .fw-icon:hover {
+	color: #20ad95!important;
+}
+.cd-top {
+	background: #ff7029 url(../../images/cd-top-arrow.svg) no-repeat center 50%;
+}
+
+.woocommerce-checkout .woocommerce-form-login p.form-row button.button:hover, p.checkout-coupon input[type="submit"]:hover {
+	background: #20ad95 none repeat scroll 0 0;
+}
+.loader {
+	border-top: 3px solid #20ad95;
+}
+.vultur_about_learnbox_left:hover:after, .vultur_about_learnbox_right:hover:after {
+	border: 3px solid #20ad95;
+}
+
+/*-- woocommerce css --*/
+.woocommerce div.product span.price, .woocommerce div.product p.price ins, .woocommerce div.product span.price ins, .woocommerce-page a:hover, .woocommerce a:hover, .widget_product_search button:hover, .woocommerce.widget .product-title:hover, .comment-respond a, .comment-respond a:visited, .woocommerce-info::before {
+	color: #20ad95;
+}
+.widget_product_search button, .woocommerce .widget_price_filter .ui-slider .ui-slider-range, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle, .woocommerce div.product form.cart .button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce a.button.alt, .woocommerce input.button, .woocommerce button.button, .woocommerce button.button.alt, .woocommerce-page button.button, .select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[data-selected] {
+	background-color: #20ad95;
+}
+.widget_product_search button:hover, .woocommerce div.product form.cart .button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce a.button.alt, .woocommerce input.button, .woocommerce button.button, .woocommerce button.button.alt, .woocommerce div.product form.cart .button:hover, .woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce a.button.alt:hover, .woocommerce input.button:hover, .woocommerce button.button:disabled:hover, .woocommerce button.button:disabled[disabled]:hover, .woocommerce button.button:hover, .woocommerce button.button.alt:hover, .woocommerce-page button.button:hover, .woocommerce div.product form.cart .button:focus, .woocommerce #respond input#submit:focus, .woocommerce a.button:focus, .woocommerce a.button.alt:focus, .woocommerce input.button:focus, .woocommerce button.button:disabled:focus, .woocommerce button.button:disabled[disabled]:focus, .woocommerce button.button:focus, .woocommerce button.button.alt:focus, .woocommerce nav.woocommerce-pagination ul li span.current, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce-page button.button:focus, .self-resume-download.resume_second_layout .vultur_btn:hover, .self-resume-download .vultur_btn:focus, .self-resume-download .vultur_btn:hover, .pagination .page-numbers.current, .pagination .page-numbers:hover, .cat_sidebar .widget .tagcloud a:hover, #footer .widget .tagcloud a:hover, #footer .widget_search .search-submit, .woocommerce nav.woocommerce-pagination ul li a:hover, .woocommerce nav.woocommerce-pagination ul li span.current, .widget_product_search button:hover, .widget_price_filter .price_slider_amount button:hover {
+	border-color: #20ad95;
+}
+.woocommerce nav.woocommerce-pagination ul li span.current, .woocommerce nav.woocommerce-pagination ul li a:hover {
+	background-color: #20ad95 !important;
+}
+.wrap-bg-secondary {
+	background:#1d274a;
+}
+.transparent-header.sticky-menu {
+	background:#17191b;
+}
