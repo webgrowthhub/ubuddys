@@ -1,0 +1,80 @@
+<%- include header.ejs %>
+<%- include sidebar.ejs %>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Add Payment to user  </h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Add Users</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+         
+          <!-- /.col -->
+          <div class="col-md-9 mx-auto">
+            <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Add payment</h3>
+                </div>
+                <div><% if ( typeof(message) !='undefined') { %>
+                  <%= message %>
+                <% } %> </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" method="POST" enctype="multipart/form-data">
+                  <div class="card-body">
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">New Course Title</label>
+                      <input type="text" class="form-control col-sm-9" name="course_title"  placeholder="Enter your course title">
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Description</label>
+                      <textarea class="form-control col-sm-9" id="w3review" name="course_Description" rows="4" ></textarea>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Intro Video</label>
+                      <input type="file" class="form-control col-sm-9" name="courseintro" id="courseintro">
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Price</label>
+                      <input type="text" class="form-control col-sm-9" name="coursePrice" id="coursePrice">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Add Course</button>
+                  </div>
+                </form>
+              </div>
+           
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+        </div>
+     
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%- include footer.ejs %>

@@ -109,306 +109,69 @@
                      </div>
                      <div class="container">
                         <div class="row">
-                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  course-single mb20">
-                              <div class=" themeioan_course">
-                                 <article>
-                                    <div class="blog-photo">
-                                       <a href="#" class="course-permalink"><img width="400" height="300" src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt="" /></a>
-                                       <div class="course_category">
-                                          <div class="cat-item">
-                                             <span class="cat-links"><a href="#" rel="tag">Angular</a></span>											
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="blog-content">
-                                       <ul class="course-bottom-list">
-                                          <li>
-                                             <div class="course-duration">
-                                                <span class=" ">
-                                                <span class="course-price price">&#036;99.00</span>
-                                                </span>
-                                             </div> 
-                                          </li>
-                                       </ul>
-                                       <h5 class="title"><a href="#" class="course-permalink">Visual Basic Web Course With Live Project</a></h5>
-                                       <div class="vultur-stars">
-                                          <div class="review-stars-rated">
-                                             <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+
+                           <% if ( typeof(Alldata) !='undefined') { %>
+                              <% Alldata.forEach(function(Course) { %>
+                                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  course-single mb20">
+                                    <div class=" themeioan_course">
+                                       <article>
+                                          <div class="blog-photo">
+                                             <a href="#" class="course-permalink"><img width="400" height="300" src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt="" /></a>
+                                             <div class="course_category">
+                                                <div class="cat-item">
+                                                   <!-- <span class="cat-links"><a href="#" rel="tag">Angular</a></span>											 -->
+                                                </div>
                                              </div>
                                           </div>
-                                          <div class="vultur_rating_total">
-                                             5.0                                                (1                                                rating)
-                                          </div>
-                                       </div>
-                                       <div class="course_lessons">
-                                          <div class="cat-item">
-                                             <i class="far fa-address-book fa-3x"></i>
-                                             <span class="lp-label label-8">
-                                             8    </span>
-                                             Lessons													
-                                          </div>
-                                          <div class="cat-item">
-                                             <i class="far fa-user fa-3x"></i>
-                                             <span class="lp-label label-66">
-                                             66    </span>
-                                             Student													
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </article>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  course-single mb20">
-                              <div class=" themeioan_course">
-                                 <article>
-                                    <div class="blog-photo">
-                                       <a href="#" class="course-permalink"><img width="400" height="300" src="./assets/images/bosss-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt="" /></a>
-                                       <div class="course_category">
-                                          <div class="cat-item">
-                                             <span class="cat-links"><a href="#" rel="tag">WordPress</a></span>											
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="blog-content">
-                                       <ul class="course-bottom-list">
-                                          <li>
-                                             <div class="course-duration">
-                                                <span class=" ">
-                                                <span class="course-price price">&#036;79.00</span>
-                                                </span>
+                                          <div class="blog-content">
+                                           
+                                             <h5 class="title"><a href="#" class="course-permalink"><%=Course.coursetitle   %></a></h5>
+                                             <div class="vultur-stars">
+                                                <div class="review-stars-rated">
+                                                   <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                                   </div>
+                                                </div>
+                                                <div class="vultur_rating_total">
+                                                   5.0 (1 rating)
+                                                </div>
                                              </div>
-                                          </li>
-                                       </ul>
-                                       <h5 class="title"><a href="#" class="course-permalink">Become the PHP Master faster with Vultur</a></h5>
-                                       <div class="vultur-stars">
-                                          <div class="review-stars-rated">
-                                             <div class="rating"> 
-                                                <input type="radio" name="rating1" value="10" id="10"><label for="10">☆</label> <input type="radio" name="rating1" value="9" id="9"><label for="9">☆</label> <input type="radio" name="rating1" value="8" id="8"><label for="8">☆</label> <input type="radio" name="rating1" value="7" id="7"><label for="7">☆</label> <input type="radio" name="rating1" value="6" id="6"><label for="6">☆</label>
-                                             </div>
+                                             <ul class="course-bottom-list">
+                                                <li>
+                                                   <div class="course-duration">
+                                                      <span class=" ">
+                                                      <span class="course-price price">&#036;<%=Course.courseprice   %></span>
+                                                      </span>
+                                                   </div> 
+                                                </li>
+                                             </ul>
+      
+      
+      
+                                             <!-- <div class="course_lessons">
+                                                <div class="cat-item">
+                                                   <i class="far fa-address-book fa-3x"></i>
+                                                   <span class="lp-label label-8">
+                                                   8    </span>
+                                                   Lessons													
+                                                </div>
+                                                <div class="cat-item">
+                                                   <i class="far fa-user fa-3x"></i>
+                                                   <span class="lp-label label-66">
+                                                   66    </span>
+                                                   Student													
+                                                </div>
+                                             </div> -->
                                           </div>
-                                          <div class="vultur_rating_total">
-                                             4.0                                                (1                                                rating)
-                                          </div>
-                                       </div>
-                                       <div class="course_lessons">
-                                          <div class="cat-item">
-                                             <i class="far fa-address-book fa-3x"></i>
-                                             <span class="lp-label label-8">
-                                             8    </span>
-                                             Lessons													
-                                          </div>
-                                          <div class="cat-item">
-                                             <i class="far fa-user fa-3x"></i>
-                                             <span class="lp-label label-65">
-                                             65    </span>
-                                             Student													
-                                          </div>
-                                       </div>
+                                       </article>
                                     </div>
-                                 </article>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  course-single mb20">
-                              <div class=" themeioan_course">
-                                 <article>
-                                    <div class="blog-photo">
-                                       <a href="#" class="course-permalink">
-                                       <img width="400" height="300" src="./assets/images/6-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt="" /></a>
-                                       <div class="course_category">
-                                          <div class="cat-item">
-                                             <span class="cat-links"><a href="#" rel="tag">Animation</a></span>											
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="blog-content">
-                                       <ul class="course-bottom-list">
-                                          <li>
-                                             <div class="course-duration">
-                                                <span class=" ">
-                                                <span class="course-price price">&#036;89.00</span>
-                                                </span>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                       <h5 class="title"><a href="#" class="course-permalink">The Complete SQL Data Coaching Course</a></h5>
-                                       <div class="vultur-stars">
-                                          <div class="review-stars-rated">
-                                             <div class="rating"> 
-                                                <input type="radio" name="rating1" value="10" id="10"><label for="10">☆</label> <input type="radio" name="rating1" value="9" id="9"><label for="9">☆</label> <input type="radio" name="rating1" value="8" id="8"><label for="8">☆</label> <input type="radio" name="rating1" value="7" id="7"><label for="7">☆</label> <input type="radio" name="rating1" value="6" id="6"><label for="6">☆</label>
-                                             </div>
-                                          </div>
-                                          <div class="vultur_rating_total">
-                                             5.0                                                (1                                                rating)
-                                          </div>
-                                       </div>
-                                       <div class="course_lessons">
-                                          <div class="cat-item">
-                                             <i class="far fa-address-book fa-3x"></i>
-                                             <span class="lp-label label-8">
-                                             8    </span>
-                                             Lessons													
-                                          </div>
-                                          <div class="cat-item">
-                                             <i class="far fa-user fa-3x"></i>
-                                             <span class="lp-label label-58">
-                                             58    </span>
-                                             Student													
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </article>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  course-single mb20">
-                              <div class=" themeioan_course">
-                                 <article>
-                                    <div class="blog-photo">
-                                       <a href="#" class="course-permalink"><img width="400" height="300" src="./assets/images/img-blog-29-1280x640-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt="" /></a>
-                                       <div class="course_category">
-                                          <div class="cat-item">
-                                             <span class="cat-links"><a href="#" rel="tag">WordPress</a></span>											
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="blog-content">
-                                       <ul class="course-bottom-list">
-                                          <li>
-                                             <div class="course-duration">
-                                                <span class=" ">
-                                                <span class="course-price price">&#036;39.00</span>
-                                                </span>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                       <h5 class="title"><a href="#" class="course-permalink">Become the Vue Master faster with Vultur</a></h5>
-                                       <div class="vultur-stars">
-                                          <div class="review-stars-rated">
-                                             <div class="review-stars empty"></div>
-                                             <div class="review-stars filled" style="width:100%;"></div>
-                                          </div>
-                                          <div class="vultur_rating_total">
-                                             5.0                                                (1                                                rating)
-                                          </div>
-                                       </div>
-                                       <div class="course_lessons">
-                                          <div class="cat-item">
-                                             <i class="far fa-address-book fa-3x"></i>
-                                             <span class="lp-label label-8">
-                                             8    </span>
-                                             Lessons													
-                                          </div>
-                                          <div class="cat-item">
-                                             <i class="far fa-user fa-3x"></i>
-                                             <span class="lp-label label-58">
-                                             58    </span>
-                                             Student													
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </article>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  course-single mb20">
-                              <div class=" themeioan_course">
-                                 <article>
-                                    <div class="blog-photo">
-                                       <a href="#" class="course-permalink"><img width="400" height="300" src="./assets/images/6-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt="" /></a>
-                                       <div class="course_category">
-                                          <div class="cat-item">
-                                             <span class="cat-links"><a href="#" rel="tag">Python</a></span>											
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="blog-content">
-                                       <ul class="course-bottom-list">
-                                          <li>
-                                             <div class="course-duration">
-                                                <span class=" ">
-                                                <span class="course-price price">Free</span>
-                                                </span>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                       <h5 class="title"><a href="#" class="course-permalink">Introduction to network coaching course</a></h5>
-                                       <div class="vultur-stars">
-                                          <div class="review-stars-rated">
-                                             <div class="rating"> 
-                                                <input type="radio" name="rating1" value="10" id="10"><label for="10">☆</label> <input type="radio" name="rating1" value="9" id="9"><label for="9">☆</label> <input type="radio" name="rating1" value="8" id="8"><label for="8">☆</label> <input type="radio" name="rating1" value="7" id="7"><label for="7">☆</label> <input type="radio" name="rating1" value="6" id="6"><label for="6">☆</label>
-                                             </div>
-                                          </div>
-                                          <div class="vultur_rating_total">
-                                             5.0                                                (1                                                rating)
-                                          </div>
-                                       </div>
-                                       <div class="course_lessons">
-                                          <div class="cat-item">
-                                             <i class="far fa-address-book fa-3x"></i>
-                                             <span class="lp-label label-8">
-                                             8    </span>
-                                             Lessons													
-                                          </div>
-                                          <div class="cat-item">
-                                             <i class="far fa-user fa-3x"></i>
-                                             <span class="lp-label label-68">
-                                             68    </span>
-                                             Student													
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </article>
-                              </div>
-                           </div>
-                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  course-single mb20">
-                              <div class=" themeioan_course">
-                                 <article>
-                                    <div class="blog-photo"> 
-                                       <a href="#" class="course-permalink"><img width="400" height="300" src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt="" /></a>
-                                       <div class="course_category">
-                                          <div class="cat-item">
-                                             <span class="cat-links"><a href="courses-category/angular/#" rel="tag">Angular</a></span>											
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="blog-content">
-                                       <ul class="course-bottom-list">
-                                          <li>
-                                             <div class="course-duration">
-                                                <span class=" ">
-                                                <span class="course-price price">&#036;17.99</span>
-                                                </span>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                       <h5 class="title">
-                                          <a href="courses/#" class="course-permalink">Learn Python Interactive Tutorial Online</a></h5>
-                                       <div class="vultur-stars">
-                                          <div class="review-stars-rated">
-                                             <div class="rating"> 
-                                                <input type="radio" name="rating1" value="10" id="10"><label for="10">☆</label> <input type="radio" name="rating1" value="9" id="9"><label for="9">☆</label> <input type="radio" name="rating1" value="8" id="8"><label for="8">☆</label> <input type="radio" name="rating1" value="7" id="7"><label for="7">☆</label> <input type="radio" name="rating1" value="6" id="6"><label for="6">☆</label>
-                                             </div>
-                                          </div>
-                                          <div class="vultur_rating_total">
-                                             5.0                                                (1                                                rating)
-                                          </div>
-                                       </div>
-                                       <div class="course_lessons">
-                                          <div class="cat-item">
-                                             <i class="far fa-address-book fa-3x"></i>
-                                             <span class="lp-label label-8">
-                                             8    </span>
-                                             Lessons													
-                                          </div>
-                                          <div class="cat-item">
-                                             <i class="far fa-user fa-3x"></i>
-                                             <span class="lp-label label-46">
-                                             46    </span>
-                                             Student													
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </article>
-                              </div>
-                           </div>
+                                 </div>
+                                 
+
+
+                                 <%  }) } %>
+
+                         
+
                         </div>
                      </div>
                   </div>

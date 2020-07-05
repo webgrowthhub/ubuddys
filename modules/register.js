@@ -1,32 +1,28 @@
 const mongoose= require('mongoose');
-mongoose.connect('mongodb://localhost:27017/ubuddys',{useNewUrlParser:true , useCreateIndex:true,useUnifiedTopology: true,});
+mongoose.connect('mongodb://68.183.109.170:27017/ubuddys',{useNewUrlParser:true , useCreateIndex:true,useUnifiedTopology: true,});
 
 var conn =mongoose.Collection;
 
-var UserSechema=new mongoose.Schema({
-    username: String ,
-    Firstname: String,
-    Lastname : String,
-    email : String,
-    password : String,
-    temppassword : String,
-    Mobile : Number,
-    Addmemory : { type: Number,      
+var courseSechema=new mongoose.Schema({
+    coursetitle: String ,
+    coursediscription: String ,
+    courseintro: String ,
+    courseprice: Number ,
+    course_status : { type: Number,      
         enum : [0,1],      
-        default: 0  
+        default: 1  
         },
-    payment_status : { type: Number,      
-            enum : [0,1],      
-            default: 0  
-            },
-    Registerdate: { type: Date, default: Date.now },
-    addeddate: String,
-    profile_status : { type: Number,      
+})
+
+var coursecatSechema=new mongoose.Schema({
+    coursecat: String ,
+    status : { type: Number,      
         enum : [0,1],      
         default: 1  
         },
 })
 
 
-var UserModel = mongoose.model('register', UserSechema);
-module.exports= {UserModel,conn};
+var CoursesModel = mongoose.model('Courses', courseSechema);
+var CourseCategories = mongoose.model('coursecategories', coursecatSechema);
+module.exports= {CoursesModel,CourseCategories,conn};
