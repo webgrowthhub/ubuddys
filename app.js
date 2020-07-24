@@ -99,6 +99,10 @@ app.get('/admin',function(req, res, next) {
   res.render("admin/add-courses");
 });
 
+app.get('/course-details',function(req, res, next) {
+  res.render("course-details");
+});
+
 app.get('/admin/add-courses',function(req, res, next) {
   res.render("admin/add-courses");
 });
