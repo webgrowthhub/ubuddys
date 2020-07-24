@@ -54,6 +54,7 @@ var courseVideo = multer({ storage: courseVideosestorage });
 app.get('/', function(req, res, next) {
   var Allcourses=userModel.CoursesModel.find({course_status : 1}).limit(6);
   Allcourses.exec((err,data)=>{
+    console.log(data);
      res.render('index',{Alldata : data});
   })
   
