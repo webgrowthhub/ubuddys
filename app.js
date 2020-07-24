@@ -73,7 +73,10 @@ app.get('/contactus',function(req, res, next) {
 });
 
 app.get('/courses',function(req, res, next) {
-  res.render("courses");
+  var get_res=userModel.CoursesModel.find({course_status : 1});
+  get_res.exec((err,data)=>{
+    res.render("courses",{CouresData: data});
+  })
 });
 
 app.get('/lesson',function(req, res, next) {
@@ -81,18 +84,26 @@ app.get('/lesson',function(req, res, next) {
 });
 
 app.get('/single-course',function(req, res, next) {
-  res.render("single-course");
+  var id=req.query.id;
+  if(id){
+    var get_res=userModel.CoursesModel.find({_id : id ,course_status : 1});
+    get_res.exec((err,data)=>{
+      res.render("single-course",{CouresData: data});
+    })
+  }
+  
+  
 });
 
 app.get('/admin',function(req, res, next) {
   res.render("admin/add-courses");
 });
 
-app.get('/admin/add-course',function(req, res, next) {
-  res.render("admin/add-course");
+app.get('/admin/add-courses',function(req, res, next) {
+  res.render("admin/add-courses");
 });
 
-app.post('/admin/add-course',courseVideo.single("courseintro"),(req, res) => {
+app.post('/admin/add-courses',courseVideo.single("courseintro"),(req, res) => {
   const tempPath = req.file.path;
   var getname=req.file.originalname.substr(0, req.file.originalname.indexOf('.'));
   const targetPath = path.join(__dirname, "public/courses/coursesvideos/"+req.file.originalname);
@@ -122,7 +133,7 @@ app.post('/admin/add-course',courseVideo.single("courseintro"),(req, res) => {
           NewImage.save((err,doc)=>{
                
             
-            res.render("admin/add-course",{message: "Saved!"});
+            res.render("admin/add-courses",{message: "Saved!"});
             
              
           });

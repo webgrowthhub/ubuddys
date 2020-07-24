@@ -1,13 +1,13 @@
 <%- include header.ejs %>
-      <div class="vultur_banner" style="background: url(./assets/images/test3.jpg);">
+      <div class="vultur_banner" style="background: url(../assets/images/test3.jpg);">
          <div class="container">
             <div class="row">
                <div class="vultur_banner_title">
-                  <h1>Archives: Courses</h1>
+                  <h1> Courses</h1>
                   <div class="vultur_breadcrumb">
                      <div class="breadcrumbs">
                         <span class="first-item">
-                        <a href="../index.html">Homepage</a></span>
+                        <a href="/">Home</a></span>
                         <span class="separator">&gt;</span>
                         <span class="last-item">Courses</span>
                      </div>
@@ -24,268 +24,59 @@
                <button class="lp-button button search-course-button">Search</button>
             </form>
             <div class="learn-press-courses row">
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
-                  <div id="post-2496" class="themeioan_course post-2496 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-angular course">
-                     <article>
-                        <div class="blog-photo">
-                           <a href="single-course.html" class="course-permalink"><img width="400" height="300" 
-                              src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image"
-                              alt=""></a>
-                           <div class="course_category">
-                              <div class="cat-item">
-                                 <span class="cat-links"><a href="index.html" rel="tag">Angular</a></span>                    
-                              </div>
-                           </div>
-                        </div>
-                        <div class="blog-content">
-                           <ul class="course-bottom-list">
-                              <li>
-                                 <div class="course-duration">
-                                    <span class=" ">
-                                    <span class="course-price price">$99.00</span>
-                                    </span>
+
+               <% if ( typeof(CouresData) !='undefined') { %>
+                  <% CouresData.forEach(function(Course) { %>
+                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
+                        <div id="post-2496" class="themeioan_course post-2496 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-angular course">
+                           <article>
+                              <div class="blog-photo">
+                                 <a href="single-course.html" class="course-permalink"><img width="400" height="300" 
+                                    src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image"
+                                    alt=""></a>
+                                 <div class="course_category">
+                                    <div class="cat-item">
+                                       <span class="cat-links"><a href="/single-course?id=<%=Course._id %>" rel="tag">Angular</a></span>                    
+                                    </div>
                                  </div>
-                              </li>
-                           </ul>
-                           <h5 class="title"><a href="visual-basic-web-course-with-live-project/index.html" 
-                              class="course-permalink">Visual Basic Web Course With Live Project</a></h5>
-                           <div class="course_excerpt">
-                              Samium parva credo ais ambiguo statuam advesperascit est audiunt paradoca persequi concinant corpore …            
-                           </div>
-                           <div class="course_lessons">
-                              <div class="cat-item">
-                                 <i class="far fa-address-book fa-3x"></i>
-                                 <span class="lp-label label-8">
-                                 8    </span>
-                                 Lessons                
                               </div>
-                              <div class="cat-item">
-                                 <i class="far fa-user fa-3x"></i>
-                                 <span class="lp-label label-66">
-                                 66    </span>
-                                 Student                
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
-                  <div id="post-2436" class="themeioan_course post-2436 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-wordpress course">
-                     <article>
-                        <div class="blog-photo">
-                           <a href="single-course.html" class="course-permalink">
-                           <img width="400" height="300" src="./assets/images/bosss-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt=""></a>
-                           <div class="course_category">
-                              <div class="cat-item">
-                                 <span class="cat-links"><a href="index.html" rel="tag">WordPress</a></span>                    
-                              </div>
-                           </div>
-                        </div>
-                        <div class="blog-content">
-                           <ul class="course-bottom-list">
-                              <li>
-                                 <div class="course-duration">
-                                    <span class=" ">
-                                    <span class="course-price price">$79.00</span>
-                                    </span>
+                              <div class="blog-content">
+                                 <ul class="course-bottom-list">
+                                    <li>
+                                       <div class="course-duration">
+                                          <span class=" ">
+                                          <span class="course-price price">$<%=Course.courseprice %></span>
+                                          </span>
+                                       </div>
+                                    </li>
+                                 </ul>
+                                 <h5 class="title"><a href="/single-course?id=<%=Course._id %>" 
+                                    class="course-permalink"><%=Course.coursetitle %></a></h5>
+                                 <div class="course_excerpt">
+                                    <%=Course.coursediscription %>           
                                  </div>
-                              </li>
-                           </ul>
-                           <h5 class="title"><a href="become-the-php-master-faster-with-vultur/index.html" class="course-permalink">Become the PHP Master faster with Vultur</a></h5>
-                           <div class="course_excerpt">
-                              Samium parva credo ais ambiguo statuam advesperascit est audiunt paradoca persequi concinant corpore …            
-                           </div>
-                           <div class="course_lessons">
-                              <div class="cat-item">
-                                 <i class="far fa-address-book fa-3x"></i>
-                                 <span class="lp-label label-8">
-                                 8    </span>
-                                 Lessons                
+                                 <!-- <div class="course_lessons">
+                                    <div class="cat-item">
+                                       <i class="far fa-address-book fa-3x"></i>
+                                       <span class="lp-label label-8">
+                                       8    </span>
+                                       Lessons                
+                                    </div>
+                                    <div class="cat-item">
+                                       <i class="far fa-user fa-3x"></i>
+                                       <span class="lp-label label-66">
+                                       66    </span>
+                                       Student                
+                                    </div>
+                                 </div> -->
                               </div>
-                              <div class="cat-item">
-                                 <i class="far fa-user fa-3x"></i>
-                                 <span class="lp-label label-65">
-                                 65    </span>
-                                 Student                
-                              </div>
-                           </div>
+                           </article>
                         </div>
-                     </article>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
-                  <div id="post-2376" class="themeioan_course post-2376 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-animation course">
-                     <article>
-                        <div class="blog-photo">
-                           <a href="single-course.html" class="course-permalink"><img width="400" height="300" src="./assets/images/6-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt=""></a>
-                           <div class="course_category">
-                              <div class="cat-item">
-                                 <span class="cat-links"><a href="index.html" rel="tag">Animation</a></span>                    
-                              </div>
-                           </div>
-                        </div>
-                        <div class="blog-content">
-                           <ul class="course-bottom-list">
-                              <li>
-                                 <div class="course-duration">
-                                    <span class=" ">
-                                    <span class="course-price price">$89.00</span>
-                                    </span>
-                                 </div>
-                              </li>
-                           </ul>
-                           <h5 class="title"><a href="index.html" class="course-permalink">The Complete SQL Data Coaching Course</a></h5>
-                           <div class="course_excerpt">
-                              Samium parva credo ais ambiguo statuam advesperascit est audiunt paradoca persequi concinant corpore …            
-                           </div>
-                           <div class="course_lessons">
-                              <div class="cat-item">
-                                 <i class="far fa-address-book fa-3x"></i>
-                                 <span class="lp-label label-8">
-                                 8    </span>
-                                 Lessons                
-                              </div>
-                              <div class="cat-item">
-                                 <i class="far fa-user fa-3x"></i>
-                                 <span class="lp-label label-58">
-                                 58    </span>
-                                 Student                
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
-                  <div id="post-2315" class="themeioan_course post-2315 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-wordpress course">
-                     <article>
-                        <div class="blog-photo">
-                           <a href="single-course.html" class="course-permalink"><img width="400" height="300" src="./assets/images/bosss-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt=""></a>
-                           <div class="course_category">
-                              <div class="cat-item">
-                                 <span class="cat-links"><a href="../courses-category/wordpress/index.html" rel="tag">WordPress</a></span>                    
-                              </div>
-                           </div>
-                        </div>
-                        <div class="blog-content">
-                           <ul class="course-bottom-list">
-                              <li>
-                                 <div class="course-duration">
-                                    <span class=" ">
-                                    <span class="course-price price">$39.00</span>
-                                    </span>
-                                 </div>
-                              </li>
-                           </ul>
-                           <h5 class="title"><a href="become-the-vue-master-faster-with-vultur/index.html" class="course-permalink">Become the Vue Master faster with Vultur</a></h5>
-                           <div class="course_excerpt">
-                              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the …            
-                           </div>
-                           <div class="course_lessons">
-                              <div class="cat-item">
-                                 <i class="far fa-address-book fa-3x"></i>
-                                 <span class="lp-label label-8">
-                                 8    </span>
-                                 Lessons                
-                              </div>
-                              <div class="cat-item">
-                                 <i class="far fa-user fa-3x"></i>
-                                 <span class="lp-label label-58">
-                                 58    </span>
-                                 Student                
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
-                  <div id="post-2255" class="themeioan_course post-2255 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-python course">
-                     <article>
-                        <div class="blog-photo">
-                           <a href="single-course.html" class="course-permalink"><img width="400" height="300" src="./assets/images/6-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt=""></a>
-                           <div class="course_category">
-                              <div class="cat-item"> 
-                                 <span class="cat-links"><a href="index.html" rel="tag">Python</a></span>                    
-                              </div>
-                           </div>
-                        </div>
-                        <div class="blog-content">
-                           <ul class="course-bottom-list">
-                              <li>
-                                 <div class="course-duration">
-                                    <span class=" ">
-                                    <span class="course-price price">Free</span>
-                                    </span>
-                                 </div>
-                              </li>
-                           </ul>
-                           <h5 class="title"><a href="single-course.html" class="course-permalink">Introduction to network coaching course</a></h5>
-                           <div class="course_excerpt">
-                              Samium parva credo ais ambiguo statuam advesperascit est audiunt paradoca persequi concinant corpore …            
-                           </div>
-                           <div class="course_lessons">
-                              <div class="cat-item">
-                                 <i class="far fa-address-book fa-3x"></i>
-                                 <span class="lp-label label-8">
-                                 8    </span>
-                                 Lessons                
-                              </div>
-                              <div class="cat-item">
-                                 <i class="far fa-user fa-3x"></i>
-                                 <span class="lp-label label-68">
-                                 68    </span>
-                                 Student                
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
-                  <div id="post-1954" class="themeioan_course post-1954 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-angular course">
-                     <article>
-                        <div class="blog-photo">
-                           <a href="single-course.html" class="course-permalink"><img width="400" height="300" src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image" alt=""></a>
-                           <div class="course_category">
-                              <div class="cat-item">
-                                 <span class="cat-links"><a href="../courses-category/angular/index.html" rel="tag">Angular</a></span>                    
-                              </div>
-                           </div>
-                        </div>
-                        <div class="blog-content">
-                           <ul class="course-bottom-list">
-                              <li>
-                                 <div class="course-duration">
-                                    <span class=" ">
-                                    <span class="course-price price">$17.99</span>
-                                    </span>
-                                 </div>
-                              </li>
-                           </ul>
-                           <h5 class="title"><a href="learn-python-interactive-tutorial/index.html" class="course-permalink">Learn Python Interactive Tutorial Online</a></h5>
-                           <div class="course_excerpt">
-                              Samium parva credo ais ambiguo statuam advesperascit est audiunt paradoca persequi concinant corpore …            
-                           </div>
-                           <div class="course_lessons">
-                              <div class="cat-item">
-                                 <i class="far fa-address-book fa-3x"></i>
-                                 <span class="lp-label label-8">
-                                 8    </span>
-                                 Lessons                
-                              </div>
-                              <div class="cat-item">
-                                 <i class="far fa-user fa-3x"></i>
-                                 <span class="lp-label label-46">
-                                 46    </span>
-                                 Student                
-                              </div>
-                           </div>
-                        </div>
-                     </article>
-                  </div>
-               </div>
+                     </div>
+
+                     <% }) } %>
+ 
+   
             </div>
             <nav class="learn-press-pagination">
                <ul class="page-numbers">

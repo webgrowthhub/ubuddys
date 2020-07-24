@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Media </h1>
+            <h1>Add Payment to user  </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Media</li>
+              <li class="breadcrumb-item active">Add Users</li>
             </ol>
           </div>
         </div>
@@ -25,41 +25,42 @@
         <div class="row">
          
           <!-- /.col -->
-          <div class="col-md-12">
+          <div class="col-md-9 mx-auto">
             <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Add Video</h3>
+                  <h3 class="card-title">Add payment</h3>
                 </div>
+                <div><% if ( typeof(message) !='undefined') { %>
+                  <%= message %>
+                <% } %> </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" method="POST" action="/admin/add-courses"enctype="multipart/form-data">
                   <div class="card-body">
-                    <div class="form-group">
-                      <label for="title">Title</label>
-                      <input type="text" class="form-control" id="title" placeholder="Enter your title">
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">New Course Title</label>
+                      <input type="text" class="form-control col-sm-9" name="course_title"  placeholder="Enter your course title">
                     </div>
-                    <div class="form-group">
-                      <label for="imageMessage">Message For Video</label>
-                      <textarea class="form-control" id="imageMessage" rows="6" placeholder="Type your Message"></textarea>
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Description</label>
+                      <textarea class="form-control col-sm-9" id="w3review" name="course_Description" rows="4" ></textarea>
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputFile">Upload</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="">Upload</span>
-                        </div>
-                      </div>
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Intro Video</label>
+                      <input type="file" class="form-control col-sm-9" name="courseintro" id="courseintro">
                     </div>
-                 
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Price</label>
+                      <input type="text" class="form-control col-sm-9" name="coursePrice" id="coursePrice">
+                    </div>
                   </div>
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Add Course</button>
                   </div>
                 </form>
               </div>
@@ -69,37 +70,7 @@
           </div>
           <!-- /.col -->
         </div>
-        <div class="row">
-        <div class="col-md-12 ">
-            <div class="card card-default">
-              <div class="card-header">
-                <h3 class="card-title">
-                    <i class="far fa-images"></i>
-                  Videos
-                </h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- <div class="card-body">
-              <div class="d-flex flex-wrap">
-                <div class="col-md-4 col-12 col-lg-4">
-                  <iframe width="100%" height="auto" src="https://www.youtube.com/embed/WBEZ9szmLe0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="col-md-4 col-12 col-lg-4">
-                  <iframe width="100%" height="auto" src="https://www.youtube.com/embed/WBEZ9szmLe0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                <div class="col-md-4 col-12 col-lg-4">
-                  <iframe width="100%" height="auto" src="https://www.youtube.com/embed/WBEZ9szmLe0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-              </div>
-              
-               
-               
-              </div> -->
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
+     
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
