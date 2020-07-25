@@ -37,14 +37,25 @@
                 <!-- form start -->
                 <form role="form" method="POST" action="/admin/add-courses"enctype="multipart/form-data">
                   <div class="card-body">
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Name</label>
+                      <input type="text" class="form-control col-sm-9" name="course_name"  placeholder="Enter your course name">
+                    </div>
+
                     <div class="form-group row">
                       <label for="userid" class="col-sm-3 col-form-label">New Course Title</label>
                       <input type="text" class="form-control col-sm-9" name="course_title"  placeholder="Enter your course title">
                     </div>
 
                     <div class="form-group row">
-                      <label for="userid" class="col-sm-3 col-form-label">Course Description</label>
+                      <label for="userid" class="col-sm-3 col-form-label">Course short Description</label>
                       <textarea class="form-control col-sm-9" id="w3review" name="course_Description" rows="4" ></textarea>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="userid" class="col-sm-3 col-form-label">Course Description</label>
+                      <textarea class="form-control col-sm-9" id="w3review" name="course_fDescription" rows="4" ></textarea>
                     </div>
 
                     <div class="form-group row">

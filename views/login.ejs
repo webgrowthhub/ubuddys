@@ -1,0 +1,61 @@
+<%- include header.ejs %>
+
+<div class="container lms-profile-container">
+<div class="col-lg-12">
+<div class="learnpress">
+
+
+	<div id="learn-press-user-profile" class="lp-user-profile guest has-sidebar row">
+
+		<div class="row w-100">
+<div class="col-md-6 mx-auto">
+<div class="learn-press-form-login learn-press-form">
+
+    <h3>Login</h3>
+
+	
+    <form name="learn-press-login" method="post" action="#">
+
+		
+        <ul class="form-fields">
+			                <li class="form-field">
+					<div class="rwmb-field rwmb-text-wrapper "><div class="rwmb-field rwmb-text-wrapper ">
+					<label for="username">Username or email</label>
+					
+				</div><div class="rwmb-field rwmb-text-wrapper "><input  size="30" placeholder=" Enter Username or email" type="text" required id="username" class="rwmb-field rwmb-text-wrapper " name="username"></div><input type="hidden" class="rwmb-field rwmb-text-wrapper " value="username" /><div class="rwmb-field rwmb-text-wrapper "></div></div>                </li>
+			                <li class="form-field">
+					<div class="rwmb-field rwmb-password-wrapper "><div class="rwmb-field rwmb-password-wrapper ">
+					<label for="password">Password</label>
+					
+				</div><div class="rwmb-field rwmb-password-wrapper "><input  size="30" placeholder="Enter Password" type="password" required id="password" class="rwmb-field rwmb-password-wrapper " name="password"></div><input type="hidden" class="rwmb-field rwmb-password-wrapper " value="password" /><div class="rwmb-field rwmb-password-wrapper "></div></div>                </li>
+			        </ul>
+
+		        <div>
+            <label>
+                <input type="checkbox" name="rememberme"/>
+				Remember me            </label> 
+			</div>
+        <p>
+            <input type="hidden" name="learn-press-login-nonce"
+                   value="9893ac5460">
+            <button type="submit">Login</button>
+        </p>
+        <p>
+            <a href="reset-password.html">Lost your password?</a>
+        </p>
+    </form>
+
+	
+</div>
+</div>
+
+</div>
+
+	</div>
+
+</div>
+</div>
+</div>
+
+
+<%- include footer.ejs %>

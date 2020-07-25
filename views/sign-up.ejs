@@ -1,0 +1,58 @@
+<%- include header.ejs %>  
+
+<div class="container lms-profile-container">
+<div class="col-lg-12">
+<div class="learnpress">
+
+
+	<div id="learn-press-user-profile" class="lp-user-profile guest has-sidebar row">
+
+		<div class="row">
+
+<div class="col-md-6 mx-auto">
+<div class="learn-press-form-register learn-press-form">
+
+    <h3>Register</h3>
+
+	
+    <form name="learn-press-register" method="post" action="#">
+
+		
+        <ul class="form-fields">
+			                <li class="form-field">
+					<div class="rwmb-field rwmb-text-wrapper "><div class="rwmb-field rwmb-text-wrapper ">
+					<label for="reg_username">Username</label>
+					
+				</div><div class="rwmb-field rwmb-text-wrapper "><input  size="30" placeholder="Enter Username" type="text" required id="reg_username" class="rwmb-field rwmb-text-wrapper " name="reg_username"></div><input type="hidden" class="rwmb-field rwmb-text-wrapper " value="reg_username" /><div class="rwmb-field rwmb-text-wrapper "></div></div>                </li>
+			                <li class="form-field">
+					<div class="rwmb-field rwmb-email-wrapper "><div class="rwmb-field rwmb-email-wrapper ">
+					<label for="reg_email">Email</label>
+					
+				</div><div class="rwmb-field rwmb-email-wrapper "><input  size="30" placeholder="Enter Email" type="email" required id="reg_email" class="rwmb-field rwmb-email-wrapper " name="reg_email"></div><input type="hidden" class="rwmb-field rwmb-email-wrapper " value="reg_email" /><div class="rwmb-field rwmb-email-wrapper "></div></div>                </li>
+			                <li class="form-field">
+					<div class="rwmb-field rwmb-password-wrapper "><div class="rwmb-field rwmb-password-wrapper ">
+					<label for="reg_password">Password</label>
+					
+				</div><div class="rwmb-field rwmb-password-wrapper "><input  size="30" placeholder="Enter Password" type="password" required id="reg_password" class="rwmb-field rwmb-password-wrapper " name="reg_password"><p id="reg_password-description" class='description'>The password should be at least twelve characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! " ? $ % ^ & )</p></div><input type="hidden" class="rwmb-field rwmb-password-wrapper " value="reg_password" /><div class="rwmb-field rwmb-password-wrapper "></div></div>                </li>
+			        </ul>
+
+		
+        <p>
+			<input type="hidden" id="learn-press-register-nonce" name="learn-press-register-nonce" value="54ae458ee0" /><input type="hidden" name="_wp_http_referer" value="/profile/" />            <button type="submit">Register</button>
+        </p>
+
+    </form>
+
+	
+</div>
+</div>
+</div>
+
+	</div>
+
+</div>
+</div>
+</div>
+
+
+<%- include footer.ejs %>   

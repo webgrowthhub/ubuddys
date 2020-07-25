@@ -27,8 +27,20 @@ var userModel=require("./modules/register");
 const multer = require("multer");
 const bodyParser= require('body-parser');
 const fs = require('fs');
+var session = require('client-sessions');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
+//********************************Client Session In Whole website************************************* */
+app.use(session({
+  cookieName: 'session', // cookie name dictates the key name added to the request object
+  secret: 'blargadeeblargblarg', // should be a large unguessable string
+  // duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms
+  cookie: {
+    ephemeral: true, // when true, cookie expires when the browser closes
+    httpOnly: true, // when true, cookie is not accessible from javascript
+    secure: false // when true, cookie will only be sent over SSL. use key 'secureProxy' instead if you handle SSL not in your node process
+  }
+}));
 
 
 
@@ -103,6 +115,14 @@ app.get('/course-details',function(req, res, next) {
   res.render("course-details");
 });
 
+app.get('/login',function(req, res, next) {
+  res.render("login");
+});
+
+app.get('/signup',function(req, res, next) {
+  res.render("sign-up");
+});
+
 app.get('/admin/add-courses',function(req, res, next) {
   res.render("admin/add-courses");
 });
@@ -129,9 +149,11 @@ app.post('/admin/add-courses',courseVideo.single("courseintro"),(req, res) => {
         else { 
           var tittle=req.body.video_title;
           var NewImage=new userModel.CoursesModel({
-            coursetitle: req.body.course_title ,
-            coursediscription: req.body.course_Description ,
-            courseprice: req.body.coursePrice ,
+            coursename: req.body.course_name,
+            coursetitle: req.body.course_title,
+            coursediscription: req.body.course_Description,
+            coursefdiscription: req.body.course_fDescription,
+            courseprice: req.body.coursePrice,
             courseintro: "courses/coursesvideos/"+req.file.originalname,
           });
           NewImage.save((err,doc)=>{

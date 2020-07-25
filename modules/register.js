@@ -4,10 +4,12 @@ mongoose.connect('mongodb://68.183.109.170:27017/ubuddys',{useNewUrlParser:true 
 var conn =mongoose.Collection;
 
 var courseSechema=new mongoose.Schema({
-    coursetitle: String ,
-    coursediscription: String ,
-    courseintro: String ,
-    courseprice: Number ,
+    coursename: String,
+    coursetitle: String,
+    coursediscription: String,
+    coursefdiscription: String,
+    courseintro: String,
+    courseprice: Number,
     course_status : { type: Number,      
         enum : [0,1],      
         default: 1  
