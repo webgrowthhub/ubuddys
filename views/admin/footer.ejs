@@ -18,5 +18,42 @@
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<script>
+  $(document).ready(function(){
+    // for Video upload  //
+    $("#add_lectures").on("submit",function(e){
+      e.preventDefault();
+      var checkinput=$("#courseintro").val();
+      if(checkinput != ''){
+        var formData =  new FormData(this);
+      $.ajax({
+      type: "POST",
+        url: "/admin/add-lectures",
+        data: formData,
+        processData: false,
+        contentType: false,
+        error:function(eee){
+              $('#uploadStatus').html('<p style="color:#EA4335;">File upload failed,Must be A Video File! Please try again.</p>');
+            },
+        success: function(r){
+            if(r == 'true'){
+                $('#uploadStatus').html('<p style="color:#28A74B;">File has uploaded successfully!</p>');
+                alert("File has uploaded successfully!");
+                location.reload();
+            }else{
+              alert("File upload failed, please try again.");
+              location.reload();
+                $('#uploadStatus').html('<p style="color:#EA4335;">File upload failed, please try again.</p>');
+            }
+        
+        }
+    });
+      }else{
+          alert("Please Select A Video!");
+      }
+      
+    })
+  })
+</script>
 </body>
 </html>

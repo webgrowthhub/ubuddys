@@ -93,6 +93,7 @@
        <div class="cursor2"></div>
     </div>
  </footer>
+ <script src='../assets/js/jquerymin.js'></script>
  <script src='../assets/js/utils.js'></script>
  <script src='../assets/js/animate.js'></script>
  <script src='../assets/js/bootstrap.js'></script>
@@ -102,7 +103,60 @@
  <script src='../assets/js/jquery.fancybox.js'></script>
  <script src='../assets/js/slick.js'></script>
  <script>
+      $(document).ready(function(){
+         $( "#register_sub" ).on("click",function( event ) {
+       
+    var firstname= $("#reg_firstname").val();
+    var lastname= $("#reg_lastname").val();
+     
+    var email_id= $("#reg_email").val();
+   var ckbox = $('#terms_condition');
+    var password = $("#reg_password").val();
+     var cpassword= $("#reg_cpassword").val();
+    if (ckbox.is(':checked')) {
+           var checkbox='1';
+        } else {
+          var checkbox='0';
+        }
 
+    $("#enter_firstname,#enter_lastname,#enter_email,#enter_password,#enter_cpassword,#enter_pass_cpassword,#check_term,#All_fields").hide();
+    if(firstname == '' || firstname == undefined){
+      $("#enter_firstname").show();
+      $("#allfields").show();
+      event.preventDefault();
+      
+    }else if(lastname == '' || lastname == undefined){
+      $("#enter_lastname").show();
+      $("#allfields").show();
+      event.preventDefault();
+    }else if(email_id == '' || email_id == undefined){
+      $("#enter_email").show();
+      $("#allfields").show();
+      event.preventDefault();
+    }else if(password == '' || password == undefined){
+      $("#enter_password").show();
+      $("#allfields").show();
+      event.preventDefault();
+    }else if(cpassword == '' || cpassword == undefined){
+      $("#enter_cpassword").show();
+      $("#allfields").show();
+      event.preventDefault();
+    }else if(password != cpassword){
+      $("#enter_pass_cpassword").show();
+      $("#allfields").show();
+      event.preventDefault();
+    }else if(checkbox == '0'){
+      $("#check_term").show();
+      $("#allfields").show();
+      event.preventDefault();
+    }else{
+ 
+
+    }
+    
+
+  });
+      })
  </script>
 </body>
 <!-- Mirrored from vultur.drozd.at/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jun 2020 10:09:14 GMT -->

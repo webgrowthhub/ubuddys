@@ -10,6 +10,7 @@ var courseSechema=new mongoose.Schema({
     coursefdiscription: String,
     courseintro: String,
     courseprice: Number,
+    addedby: String,
     course_status : { type: Number,      
         enum : [0,1],      
         default: 1  
@@ -24,7 +25,42 @@ var coursecatSechema=new mongoose.Schema({
         },
 })
 
+var registerSechema=new mongoose.Schema({
+    firstname: String,
+    lastname: String,
+    email: String,
+    tempassword: String,
+    password: String,
+    profile_status : { type: Number,      
+        enum : [0,1],      
+        default: 1  
+        },
+})
+
+var AdminSechema=new mongoose.Schema({
+    email: String,
+    password: String,
+    profile_status : { type: Number,      
+        enum : [0,1],      
+        default: 1  
+        },
+})
+
+var AdminCoursesSechema=new mongoose.Schema({
+    addedby: String,
+    course_id: String,
+    lecture_video: String,
+    lecture_description: String,
+    lecture_status : { type: Number,      
+        enum : [0,1],      
+        default: 1  
+        },
+})
+
 
 var CoursesModel = mongoose.model('Courses', courseSechema);
 var CourseCategories = mongoose.model('coursecategories', coursecatSechema);
-module.exports= {CoursesModel,CourseCategories,conn};
+var Register = mongoose.model('regsiter',registerSechema);
+var admin= mongoose.model("admins",AdminSechema);
+var courseLecures=mongoose.model("courses_lectures",AdminCoursesSechema);
+module.exports= {CoursesModel,CourseCategories,Register,admin,courseLecures,conn};

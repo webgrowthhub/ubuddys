@@ -15,30 +15,84 @@
     <h3>Register</h3>
 
 	
-    <form name="learn-press-register" method="post" action="#">
+    <form name="learn-press-register" method="post" action="/signup">
 
 		
         <ul class="form-fields">
+			<% if ( typeof(message) !='undefined') { %>
+				<p class='description'><h4><%=message   %></h4></p>
+			
+			<% } %>
 			                <li class="form-field">
 					<div class="rwmb-field rwmb-text-wrapper "><div class="rwmb-field rwmb-text-wrapper ">
-					<label for="reg_username">Username</label>
+					<label for="reg_username">First name</label>
 					
-				</div><div class="rwmb-field rwmb-text-wrapper "><input  size="30" placeholder="Enter Username" type="text" required id="reg_username" class="rwmb-field rwmb-text-wrapper " name="reg_username"></div><input type="hidden" class="rwmb-field rwmb-text-wrapper " value="reg_username" /><div class="rwmb-field rwmb-text-wrapper "></div></div>                </li>
+				</div><div class="rwmb-field rwmb-text-wrapper ">
+					<input  size="30" placeholder="Enter First name" type="text" required id="reg_firstname" class="rwmb-field rwmb-text-wrapper " name="reg_firstname">
+					<p style="color: red; display: none;"  id="enter_firstname" class='description'>* Enter First Name</p>
+				</div>
+				</div>                </li>
+
+				<li class="form-field">
+					<div class="rwmb-field rwmb-text-wrapper "><div class="rwmb-field rwmb-text-wrapper ">
+					<label for="reg_username">Last name</label>
+					
+				</div><div class="rwmb-field rwmb-text-wrapper "><input  size="30" placeholder="Enter Last name" type="text" required id="reg_lastname" class="rwmb-field rwmb-text-wrapper " name="reg_lastname">
+					<p style="color: red; display: none;"  id="enter_lastname" class='description'>* Enter Last Name</p>
+				</div>
+				</div>                </li>
 			                <li class="form-field">
 					<div class="rwmb-field rwmb-email-wrapper "><div class="rwmb-field rwmb-email-wrapper ">
 					<label for="reg_email">Email</label>
 					
-				</div><div class="rwmb-field rwmb-email-wrapper "><input  size="30" placeholder="Enter Email" type="email" required id="reg_email" class="rwmb-field rwmb-email-wrapper " name="reg_email"></div><input type="hidden" class="rwmb-field rwmb-email-wrapper " value="reg_email" /><div class="rwmb-field rwmb-email-wrapper "></div></div>                </li>
+				</div><div class="rwmb-field rwmb-email-wrapper "><input  size="30" placeholder="Enter Email" type="email" required id="reg_email" class="rwmb-field rwmb-email-wrapper " name="reg_email">
+					<p style="color: red; display: none;"  id="enter_email" class='description'>* Enter Email Address</p>
+				</div>
+				
+			</div>                </li>
 			                <li class="form-field">
 					<div class="rwmb-field rwmb-password-wrapper "><div class="rwmb-field rwmb-password-wrapper ">
 					<label for="reg_password">Password</label>
 					
-				</div><div class="rwmb-field rwmb-password-wrapper "><input  size="30" placeholder="Enter Password" type="password" required id="reg_password" class="rwmb-field rwmb-password-wrapper " name="reg_password"><p id="reg_password-description" class='description'>The password should be at least twelve characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! " ? $ % ^ & )</p></div><input type="hidden" class="rwmb-field rwmb-password-wrapper " value="reg_password" /><div class="rwmb-field rwmb-password-wrapper "></div></div>                </li>
+				</div><div class="rwmb-field rwmb-password-wrapper ">
+					<input  size="30" placeholder="Enter Password" type="password" required id="reg_password" class="rwmb-field rwmb-password-wrapper " name="reg_password">
+					<p style="color: red; display: none;"  id="enter_password" class='description'>* Enter Password</p>
+					<p id="reg_password-description" class='description'>The password should be at least twelve characters long. To make it stronger, use upper and lower case letters, numbers, and symbols like ! " ? $ % ^ & )</p>
+				</div>
+				
+				<div class="rwmb-field rwmb-password-wrapper ">
+
+				</div>
+			</div>
+							</li>
+							
+							<li class="form-field">
+								<div class="rwmb-field rwmb-password-wrapper "><div class="rwmb-field rwmb-password-wrapper ">
+								<label for="reg_password">Confirm Password</label>
+								
+							</div><div class="rwmb-field rwmb-password-wrapper ">
+						<input  size="30" placeholder="Enter Confirm Password" type="password" required id="reg_cpassword" class="rwmb-field rwmb-password-wrapper " name="reg_cpassword">
+						<p style="color: red; display: none;"  id="enter_cpassword" class='description'>* Enter Confirm Password</p>
+						<p style="color: red; display: none;"  id="enter_pass_cpassword" class='description'>* Password and Confirm Password Must be Same</p>
+					</div>
+							<div class="rwmb-field rwmb-password-wrapper "></div></div>
+										</li>
+
+										<li class="form-field">
+											<div class="rwmb-field rwmb-password-wrapper ">
+												<div class="rwmb-field ">
+													<input type="checkbox" id="terms_condition" name="terms_condition" value="terms">
+													<label> I have read and understand the terms and Conditions</label>
+													<p style="color: red; display: none;"  id="check_term" class='description'>* Please Check Term and Condition</p>
+													<p style="color: red; display: none;"  id="All_fields" class='description'>* Please Enter All Details</p>
+												</div>
+										<div class="rwmb-field rwmb-password-wrapper "></div></div>
+													</li>
 			        </ul>
 
 		
         <p>
-			<input type="hidden" id="learn-press-register-nonce" name="learn-press-register-nonce" value="54ae458ee0" /><input type="hidden" name="_wp_http_referer" value="/profile/" />            <button type="submit">Register</button>
+			 <button id="register_sub" type="submit">Register</button>
         </p>
 
     </form>
