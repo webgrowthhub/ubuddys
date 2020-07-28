@@ -8,9 +8,11 @@ var AplCss, targetSection, tar, classname;
             window_height = window.innerHeight;
         $(".vultur_loadmore").slice(0, 3).show(), $("#loadMore").on("click", function(e) {
             e.preventDefault(), $(".vultur_loadmore:hidden").slice(0, 5).slideDown(), 0 == $(".vultur_loadmore:hidden").length && $("#load").fadeOut("slow")
-        }), $(".timer").appear(function() {
-            $(this).countTo()
-        }), $(".popup-gallery").magnificPopup({
+        })
+        // , $(".timer").appear(function() {
+        //     $(this).countTo()
+        // })
+        , $(".popup-gallery").magnificPopup({
             delegate: "a.imageopen",
             type: "image",
             tLoading: "Loading image #%curr%...",
