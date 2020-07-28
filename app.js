@@ -253,6 +253,10 @@ app.get('/logout', (req,res)=>{
    return res.redirect('login');
 });
 
+app.get('/cart', (req,res)=>{
+ return res.render("cart");
+});
+
 app.get('/admin/logout', (req,res)=>{
   req.session.reset();
    return res.redirect('/admin/login');
