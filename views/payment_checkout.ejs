@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-US">
+ 
+   <head>   
+  <style>
+      .razorpay-payment-button{display: none;}
+     
+  </style>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1" >    
+      <title> Ubuddys </title>     
+     
+   </head>
+   <body>
+      
+<form action="/purchase" method="POST" id="checkoutform">
+    <% if (order_id) { %>
+        <% var orderId=order_id; %>
+        <% var amount=amount; %>
+        <%  }  %>
+    <!-- Note that the amount is in paise = 50 INR -->
+    <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_uipHkI2wkvuvpb"
+        data-amount= <%= amount %>
+        data-name="cash"
+        data-description="Purchase Description"
+        data-image="https://your-awesome-site.com/your_logo.jpg"
+        data-prefill.name=""
+        data-prefill.email="support@razorpay.com"
+        data-theme.color="#F37254"
+        data-order_id = <%= orderId %>
+    ></script>
+    <!-- <input type="hidden" value="Hidden Element" name="hidden"> -->
+    </form>
+    </body>
+    </html>
+
+ <script src='../assets/js/jquerymin.js'></script>
+ 
+ <script>
+      $(document).ready(function(){
+$("#checkoutform").submit();
+
+$("#modal-close").on("click",function(){
+    alert();
+})
+      })
+ </script>

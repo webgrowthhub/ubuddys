@@ -51,9 +51,12 @@
          <div class="scroll-wrapper content-item-scrollable scrollbar-light" style="position: absolute; top: 0px; bottom: 0px; width: 100%; opacity: 1;">
             <div class="content-item-scrollable scrollbar-light scroll-content" style="height: 300px; margin-bottom: 0px; margin-right: 0px; opacity: 1; max-height: none;">
                <div class="content-item-wrap">
-                  <div class="learn-press-content-protected-message">
+                  <div  class="learn-press-content-protected-message">
                      <span class="icon"></span>
-                     This content is protected, please <a href="../../../../profile/index936d.html?redirect_to=https%3A%2F%2Fvultur.drozd.at%2Fcourses%2Fbecome-the-php-master-faster-with-vultur%2Flessons%2Flesson-1-copy-4%2F">login</a> and enroll course to view this content!
+                     Please select a video To Proceed
+                  </div>
+                  <div id="mediaWindow">
+
                   </div>
                   <div class="course-item-nav">
                      <div class="next">
@@ -93,79 +96,24 @@
                         </div>
                      </div>
                      <ul class="section-content">
-                        <li class="course-item course-item-lp_lesson course-item-2437 current item-locked">
-                           <a class="section-item-link" href="index.html">
-                              <span class="item-name">Lesson 1</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2438 item-locked">
-                           <a class="section-item-link" href="../lesson-2-copy-4/index.html">
-                              <span class="item-name">Lesson 2</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2439 item-locked">
-                           <a class="section-item-link" href="../lesson-3-copy-4/index.html">
-                              <span class="item-name">Lesson 3</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                   
-                        <li class="course-item course-item-lp_lesson course-item-2439 item-locked">
-                           <a class="section-item-link" href="../lesson-3-copy-4/index.html">
-                              <span class="item-name">Lesson 3</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2439 item-locked">
-                           <a class="section-item-link" href="../lesson-3-copy-4/index.html">
-                              <span class="item-name">Lesson 3</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2439 item-locked">
-                           <a class="section-item-link" href="../lesson-3-copy-4/index.html">
-                              <span class="item-name">Lesson 3</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2439 item-locked">
-                           <a class="section-item-link" href="../lesson-3-copy-4/index.html">
-                              <span class="item-name">Lesson 3</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2439 item-locked">
-                           <a class="section-item-link" href="../lesson-3-copy-4/index.html">
-                              <span class="item-name">Lesson 3</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2439 item-locked">
-                           <a class="section-item-link" href="../lesson-3-copy-4/index.html">
-                              <span class="item-name">Lesson 3</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
+
+
+
+                        <% if ( typeof(CouresData) !='undefined') { %>
+                           <% CouresData.forEach(function(Course) { %>
+                              <li class="course-item course-item-lp_lesson course-item-2437 current item-locked">
+                                 <a class="section-item-link lecture_video" data-id="http://localhost/<%=Course.lecture_video   %>">
+                                    <span class="item-name"><%=Course.lecture_description   %></span>
+                                    <div class="course-item-meta">
+                                       <i class="fa item-meta course-item-status trans"></i>
+                                    </div>
+                                 </a>
+                              </li>
+
+
+                              <% }) } %>
+
+                  
                      </ul>
                   </li>
                   <!-- <li class="section" id="section-digital-marketing-techniques-14" data-id="digital-marketing-techniques-14" data-section-id="14">
@@ -261,9 +209,11 @@
          </div>
       </div>
       <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
-         <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+         <div  style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+         </div>
       </div>
    </main>
+   <script src='./assets/js/jquerymin.js'></script>
       <script src='./assets/js/utils.js'></script>
       <script src='./assets/js/animate.js'></script>
       <script src='./assets/js/bootstrap.js'></script>
@@ -272,7 +222,14 @@
       <script src='./assets/js/vultur-custom.js'></script>
       <script src='./assets/js/jquery.fancybox.js'></script>
       <script src='./assets/js/slick.js'></script>
-      <script></script>
+      <script>
+             $(function(){
+               $(".lecture_video").on("click",function(){
+                  var href=$(this).data("id");
+                  $("#mediaWindow").html('<video width="640" height="360" controls><source src="' + href + '" /></video>');
+               })
+            })
+      </script>
    </body>
    <!-- Mirrored from vultur.drozd.at/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jun 2020 10:09:14 GMT -->
 </html>

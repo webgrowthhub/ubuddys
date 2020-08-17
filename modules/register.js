@@ -1,5 +1,5 @@
 const mongoose= require('mongoose');
-mongoose.connect('mongodb://68.183.109.170:27017/ubuddys',{useNewUrlParser:true , useCreateIndex:true,useUnifiedTopology: true,});
+mongoose.connect('mongodb://rahul:sahil420admin@68.183.109.170:27017/ubuddys',{useNewUrlParser:true , useCreateIndex:true,useUnifiedTopology: true,});
 
 var conn =mongoose.Collection;
 
@@ -29,12 +29,14 @@ var registerSechema=new mongoose.Schema({
     firstname: String,
     lastname: String,
     email: String,
-    tempassword: String,
     password: String,
+    mobile : Number,
+    enrollcourses : Array,
     profile_status : { type: Number,      
         enum : [0,1],      
         default: 1  
         },
+        Registerdate: { type: Date, default: Date.now },
 })
 
 var AdminSechema=new mongoose.Schema({
@@ -57,10 +59,30 @@ var AdminCoursesSechema=new mongoose.Schema({
         },
 })
 
+var AdminCoursesSechema=new mongoose.Schema({
+    addedby: String,
+    course_id: String,
+    lecture_video: String,
+    lecture_description: String,
+    lecture_status : { type: Number,      
+        enum : [0,1],      
+        default: 1  
+        },
+})
+
+var PaymentsSechme=new mongoose.Schema({
+    paymentId: String,
+    email: String,
+    amount: String,
+    course_id: String
+ 
+})
+
 
 var CoursesModel = mongoose.model('Courses', courseSechema);
 var CourseCategories = mongoose.model('coursecategories', coursecatSechema);
 var Register = mongoose.model('regsiter',registerSechema);
 var admin= mongoose.model("admins",AdminSechema);
 var courseLecures=mongoose.model("courses_lectures",AdminCoursesSechema);
-module.exports= {CoursesModel,CourseCategories,Register,admin,courseLecures,conn};
+var Payments=mongoose.model("payments",PaymentsSechme);
+module.exports= {CoursesModel,CourseCategories,Register,admin,courseLecures,conn,Payments};

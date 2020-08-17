@@ -18,9 +18,8 @@
                               <div class="single-course-duration">
                                  <span class="course-single-price">$<%=Course.courseprice   %></span>
                               </div>
-                              <form name="purchase-course" class="purchase-course" method="post" enctype="multipart/form-data">
-                                 <input type="hidden" name="purchase-course" value="2496">
-                                 <input type="hidden" name="purchase-course-nonce" value="3eff9534d8">
+                              <form name="purchase-course" action="/single-course" class="purchase_course" method="post">
+                                 <input type="hidden" name="purchase_course" value="<%=Course._id   %>">
                                  <button class="lp-button button button-purchase-course">
                                  Enroll this course				            </button>
                               </form>
@@ -385,9 +384,8 @@
                                     <span class="course-price price">$<%=Course.courseprice  %></span>
                                  </div>
                                  <div class="lp-course-buttons">
-                                    <form name="purchase-course" class="purchase-course" method="post" enctype="multipart/form-data">
-                                       <input type="hidden" name="purchase-course" value="2496">
-                                       <input type="hidden" name="purchase-course-nonce" value="3eff9534d8">
+                                    <form name="purchase-course" class="purchase-course" method="post">
+                                       <input type="hidden" name="purchase-course" value="<%=Course._id  %>">
                                        <button class="lp-button button button-purchase-course">
                                        Buy this course        </button>
                                     </form>

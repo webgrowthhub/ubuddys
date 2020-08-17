@@ -1,0 +1,91 @@
+<%- include header.ejs %>
+      <div class="vultur_banner" style="background: url(../assets/images/test3.jpg);">
+         <div class="container">
+            <div class="row">
+               <div class="vultur_banner_title">
+                  <h1> Courses</h1>
+                  <div class="vultur_breadcrumb">
+                     <div class="breadcrumbs">
+                        <span class="first-item">
+                        <a href="/">Home</a></span>
+                        <span class="separator">&gt;</span>
+                        <span class="last-item">Courses</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div id="lp-archive-courses" class="lp-archive-courses">
+            <form method="get" name="search-course" class="learn-press-search-course-form" action="https://vultur.drozd.at/courses/">
+               <input type="text" name="s" class="search-course-input" value="" placeholder="Search course...">
+               <input type="hidden" name="ref" value="course">
+               <button class="lp-button button search-course-button">Search</button>
+            </form>
+            <div class="learn-press-courses row">
+
+               <% if ( typeof(enrolledCourses) !='undefined') { %>
+                  <% enrolledCourses.forEach(function(Course) { %>
+                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 course-single mb20">
+                        <div id="post-2496" class="themeioan_course post-2496 lp_course type-lp_course status-publish has-post-thumbnail hentry course_category-angular course">
+                           <article>
+                              <div class="blog-photo">
+                                 <a href="single-course.html" class="course-permalink"><img width="400" height="300" 
+                                    src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image"
+                                    alt=""></a>
+                                 <div class="course_category">
+                                    <div class="cat-item">
+                                       <span class="cat-links"><a href="/single-course?id=<%=Course._id %>" rel="tag">Angular</a></span>                    
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="blog-content">
+                                 <ul class="course-bottom-list">
+                                    <li>
+                                       <div class="course-duration">
+                                          <span class=" ">
+                                          <span class="course-price price">$<%=Course.courseprice %></span>
+                                          </span>
+                                       </div>
+                                    </li>
+                                 </ul>
+                                 <h5 class="title"><a href="/lesson?id=<%=Course._id %>" 
+                                    class="course-permalink"><%=Course.coursetitle %></a></h5>
+                                 <div class="course_excerpt">
+                                    <%=Course.coursediscription %>           
+                                 </div>
+                                 <!-- <div class="course_lessons">
+                                    <div class="cat-item">
+                                       <i class="far fa-address-book fa-3x"></i>
+                                       <span class="lp-label label-8">
+                                       8    </span>
+                                       Lessons                
+                                    </div>
+                                    <div class="cat-item">
+                                       <i class="far fa-user fa-3x"></i>
+                                       <span class="lp-label label-66">
+                                       66    </span>
+                                       Student                
+                                    </div>
+                                 </div> -->
+                              </div>
+                           </article>
+                        </div>
+                     </div>
+
+                     <% }) } %>
+ 
+   
+            </div>
+            <nav class="learn-press-pagination">
+               <ul class="page-numbers">
+                  <li><a class="prev page-numbers" href="#">&lt;</a></li>
+                  <li><span aria-current="page" class="page-numbers current">1</span></li>
+                  <li><a class="page-numbers" href="#">2</a></li>
+                  <li><a class="next page-numbers" href="#">&gt;</a></li>
+               </ul>
+            </nav>
+         </div>
+      </div>
+      <%- include footer.ejs %>

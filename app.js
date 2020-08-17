@@ -29,6 +29,11 @@ const bodyParser= require('body-parser');
 const fs = require('fs');
 var session = require('client-sessions');
 var generator = require('generate-password');
+var Razorpay = require('razorpay');
+var instance = new Razorpay({
+  key_id: 'rzp_test_uipHkI2wkvuvpb',
+  key_secret: 'XUjU4aqRV3f1ChLZ21l1QyfD'
+})
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -111,19 +116,139 @@ function checkEmail(req,res,next){
 app.get('/', function(req, res, next) {
   var Allcourses=userModel.CoursesModel.find({course_status : 1}).limit(6);
   Allcourses.exec((err,data)=>{
+    if(req.session.user){
+      var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
+      getuser.exec((err,coursedata)=>{
+       if(coursedata[0]){
+        // var enrolledcourses=userModel.CoursesModel.find({_id: {$in: coursedata[0].enrollcourses}});
+        // enrolledcourses.exec((en_error,Enroldata)=>{
+         
+        // })
+        res.render('index',{Alldata : data,usersession: req.session.user,EnrollCourse : coursedata});
+       }else{
+        res.render('index',{Alldata : data,usersession: req.session.user});
+       }
+       
+      })
+    }else{
+      res.render('index',{Alldata : data,usersession: req.session.user});
+    }
     
-     res.render('index',{Alldata : data,usersession: req.session.user});
   })
   
 });
 
 app.get('/aboutus',function(req, res, next) {
-  res.render("aboutus",{usersession: req.session.user});
+  if(req.session.user){
+    var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
+    getuser.exec((err,coursedata)=>{
+     if(coursedata[0]){
+      res.render("aboutus",{usersession: req.session.user,EnrollCourse : coursedata});
+     }else{
+      res.render("aboutus",{usersession: req.session.user});
+     }
+     
+    })
+  }else{
+    res.render("aboutus",{usersession: req.session.user});
+  }
+ 
 });
 
 app.get('/blog',function(req, res, next) {
   res.render("blog");
 });
+
+
+
+app.get('/payment',function(req, res, next) {
+  var amount= 2000,
+  currency='INR',
+  receipt = '1234545f4',
+  payment_capture =true,
+  notes ="something",
+  order_id,payment_id;
+
+  instance.orders.create({amount, currency, receipt, payment_capture, notes}).then((response) => {
+    console.log("**********Order Created***********");
+    console.log(response);
+    console.log("**********Order Created***********");
+order_id=response.id;
+
+}).catch((error) => {
+  console.log(error);
+})
+// instance.payments.capture(order_id, amount).then((response) => {
+//     console.log(response);
+// }).catch((error) => {
+//   console.log(error);
+// });
+res.render('payment_checkout',{order_id:order_id,amount:amount});
+});
+
+
+
+/*****************
+ * Payment status*
+ *****************/
+app.post('/purchase', (req,res) =>{
+  payment_id =  req.body;
+  console.log("**********Payment authorized***********");
+  console.log(payment_id);
+  console.log("**********Payment authorized***********");
+  instance.payments.fetch(payment_id.razorpay_payment_id).then((response) => {
+  console.log("**********Payment instance***********");
+  console.log(response); 
+  console.log("**********Payment instance***********")
+  instance.payments.capture(payment_id.razorpay_payment_id, response.amount).then((response) => {
+
+    var NewPay=new userModel.Payments({
+      paymentId: response.id,
+      email: req.session.user,
+      amount: response.amount,
+      course_id:  req.session.purchase_course
+    });
+    NewPay.save((err,saved)=>{
+      if(saved){
+        var update_q=userModel.Register.find({email: req.session.user});
+        update_q.exec((erorr,GetData)=>{
+          if(GetData[0]){
+            if(GetData[0].enrollcourses){
+              var courseArray=GetData[0].enrollcourses;
+              courseArray.push( req.session.purchase_course);
+              var update=userModel.Register.updateOne({email: req.session.user},{enrollcourses: courseArray});
+              update.exec((eorrr,upd)=>{
+                if(upd){
+                  res.redirect('/thankyou');
+                }
+              });
+            }else{
+              var courseArray=[];
+              courseArray.push( req.session.purchase_course);
+              var update=userModel.Register.updateOne({email: req.session.user},{enrollcourses: courseArray});
+              update.exec((errrrr,iUpdate)=>{
+                if(iUpdate){
+                  res.redirect('/thankyou');
+                }
+              });
+            }
+          }
+        })
+        
+      }
+    })
+    
+ 
+}).catch((error) => {
+console.log(error);
+});
+
+
+}).catch((error) => {
+console.log(error);
+});
+
+})
 
 
 app.get('/admin/login',function(req, res, next) {
@@ -134,6 +259,68 @@ app.get('/admin/login',function(req, res, next) {
   }
 
 });
+
+app.get('/thankyou',function(req, res, next) {
+
+    res.render("thankyou");
+ 
+});
+app.get('/admin/allusers',function(req, res, next) {
+  var allu=userModel.Register.find({});
+  allu.exec((err,data)=>{
+    if(data){
+       res.render("admin/allusers",{Alldata: data});
+    }
+  })
+    
+  
+
+});
+
+app.post('/admin/change_status',function(req, res, next) {
+
+console.log(req.body);
+var update_req=userModel.Register.updateOne({email : req.body.email},{profile_status : req.body.status});
+update_req.exec((err,saved)=>{
+  if(saved){
+    res.send("1");
+  }
+})
+
+})
+
+app.post('/admin/change_coursestatus',function(req, res, next) {
+
+  console.log(req.body);
+  var update_req=userModel.CoursesModel.updateOne({_id : req.body.id},{course_status : req.body.status});
+  update_req.exec((err,saved)=>{
+    if(saved){
+      res.send("1");
+    }
+  })
+  
+  })
+
+app.get('/admin/all_courses',function(req, res, next) {
+
+  
+  var get_all=userModel.CoursesModel.find({ course_status : 1});
+  get_all.exec((err,Allrecord)=>{
+      return res.render("admin/all_courses",{Alldata: Allrecord });
+  })
+  
+  })
+
+
+  app.post('/admin/all_courses',function(req, res, next) {
+      var search_course=req.body.search_course;
+  
+    var get_all=userModel.CoursesModel.find({ coursename : search_course});
+    get_all.exec((err,Allrecord)=>{
+        return res.render("admin/all_courses",{Alldata: Allrecord });
+    })
+    
+    })
 
 app.post('/admin/login',function(req, res, next) {
   var email =req.body.email.toLowerCase();
@@ -154,19 +341,84 @@ app.post('/admin/login',function(req, res, next) {
 });
 
 app.get('/contactus',function(req, res, next) {
-  res.render("contactus",{usersession: req.session.user});
+  if(req.session.user){
+    var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
+    getuser.exec((err,coursedata)=>{
+     if(coursedata[0]){
+      res.render("contactus",{usersession: req.session.user,EnrollCourse : coursedata});
+     }else{
+      res.render("contactus",{usersession: req.session.user});
+     }
+     
+    })
+  }else{
+    res.render("contactus",{usersession: req.session.user});
+  }
+
+});
+
+app.get('/mycourses',function(req, res, next) {
+  
+    if(req.session.user){
+      var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
+      getuser.exec((err,coursedata)=>{
+       if(coursedata[0]){
+        var enrolledcourses=userModel.CoursesModel.find({_id: {$in: coursedata[0].enrollcourses}});
+        enrolledcourses.exec((en_error,Enroldata)=>{
+          res.render("mycourses",{usersession: req.session.user,EnrollCourse : coursedata ,enrolledCourses: Enroldata});
+         })
+        
+       }else{
+        res.render("/",{usersession: req.session.user});
+       }
+       
+      })
+    }else{
+      res.render("/",{usersession: req.session.user});
+    }
+   
+
+
+
+
 });
 
 app.get('/courses',function(req, res, next) {
  
   var get_res=userModel.CoursesModel.find({course_status : 1});
   get_res.exec((err,data)=>{
-    res.render("courses",{CouresData: data,usersession: req.session.user});
+    if(req.session.user){
+      var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
+      getuser.exec((err,coursedata)=>{
+       if(coursedata[0]){
+        // var enrolledcourses=userModel.CoursesModel.find({_id: {$in: coursedata[0].enrollcourses}});
+        // enrolledcourses.exec((en_error,Enroldata)=>{
+         
+        // })
+        res.render("courses",{CouresData: data,usersession: req.session.user,EnrollCourse : coursedata});
+       }else{
+        res.render("courses",{CouresData: data,usersession: req.session.user});
+       }
+       
+      })
+    }else{
+      res.render("courses",{CouresData: data,usersession: req.session.user});
+    }
+   
+
+
+    
   })
 });
 
 app.get('/lesson',function(req, res, next) {
-  res.render("lesson",{usersession: req.session.user});
+  var course_id=req.query.id;
+  var get_res=userModel.courseLecures.find({course_id : course_id ,lecture_status : 1});
+    get_res.exec((err,data)=>{
+      console.log(data);
+      res.render("lesson",{CouresData: data,usersession: req.session.user});
+    })
+  
 });
 
 app.get('/single-course',function(req, res, next) {
@@ -178,6 +430,38 @@ app.get('/single-course',function(req, res, next) {
     })
   }
   
+  
+});
+
+
+app.post('/single-course',function(req, res, next) {
+  req.session.purchase_course=req.body.purchase_course;
+ var getcourse_data=userModel.CoursesModel.find({_id : req.body.purchase_course ,course_status : 1});
+ getcourse_data.exec((err,data)=>{
+
+  var amount= data[0].courseprice,
+  currency='INR',
+  receipt = '1234545f4',
+  payment_capture =true,
+  notes ="Payment",
+  order_id,payment_id;
+
+  instance.orders.create({amount, currency, receipt, payment_capture, notes}).then((response) => {
+    console.log("**********Order Created***********");
+    console.log(response);
+    console.log("**********Order Created***********");
+order_id=response.id;
+
+}).catch((error) => {
+  console.log(error);
+})
+// instance.payments.capture(order_id, amount).then((response) => {
+//     console.log(response);
+// }).catch((error) => {
+//   console.log(error);
+// });
+ return res.render('payment_checkout',{order_id:order_id,amount:amount});
+ })
   
 });
 

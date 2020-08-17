@@ -19,7 +19,64 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <script>
+  $(function() {
+    $(".chnage_ustatus").on("click",function(){
+      var check= confirm("Are You Sure!");
+      if(check){
+        var id=$(this).data("id");
+      if(id == 1){
+        var status= 0;
+      }else{
+        var status=1;
+      }
+      var email=$(this).data("value");
+      $.ajax({
+      type: "POST",
+        url: "/admin/change_status",
+        data: {"status": status , "email": email},
+        success: function(r){
+          alert("Record Saved");
+           location.reload();
+        
+        }
+    });
+      }
+    
+    })
+
+
+
+    $(".chnage_course_status").on("click",function(){
+      var check= confirm("Are You Sure!");
+      if(check){
+        var id=$(this).data("id");
+      if(id == 1){
+        var status= 0;
+      }else{
+        var status=1;
+      }
+      var id=$(this).data("value");
+      $.ajax({
+      type: "POST",
+        url: "/admin/change_coursestatus",
+        data: {"status": status , "id": id},
+        success: function(r){
+          alert("Record Updated!");
+           location.reload();
+        
+        }
+    });
+      }
+    
+    })
+
+
+  })
+
+
   $(document).ready(function(){
+
+
     // for Video upload  //
     $("#add_lectures").on("submit",function(e){
       e.preventDefault();

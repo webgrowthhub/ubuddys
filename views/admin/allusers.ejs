@@ -1,0 +1,143 @@
+<%- include header.ejs %>
+<%- include sidebar.ejs %>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>All Users</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+          <div class="col-12">
+          
+            <!-- /.card -->
+  
+            <div class="card">
+              
+              
+              <div class="clearfix" style="margin-bottom: 10px;">
+
+                <form action="" method="post">                        
+                 
+                     <div class="col-md-12 col-lg-12 d-flex filter-box">
+                   <div class="col-md-3 col-lg-3">
+                    
+                       <div class=" d-flex align-items-center"> 
+                         <label> Email : </label>
+                          <input type="text" class="form-control" name="search_email" placeholder="Search By Email"> </div>
+                      </div>
+                      <div class="col-md-3 col-lg-3">
+                     
+                       <div class=" d-flex align-items-center">
+                        <label> First Name : </label>
+                           <input type="text" class="form-control" name="first_name" placeholder="First name">
+                       </div>
+                      </div>
+                      <div class="col-md-3 col-lg-3">
+                       
+                        <div class=" d-flex align-items-center">
+                          <label>  Last name : </label>
+                           <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+                       </div>
+                       
+                       </div>
+                       
+                    <div class="col-md-2 col-lg-2">
+                      <div class="pull-left">
+                        <input type="submit" class="btn btn-info" name="search_data" value="Submit" >
+                    </div>
+                    </div>
+                   </div> 
+                                      
+               </form>
+
+                   </div> 
+              <!-- /.card-header -->
+              <div class="card-body ">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                      <th>User ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Email</th>
+                      <th>Password</th>
+                      <th>Mobile</th>
+                      <th>Register Date</th>
+                      <th>Action</th>
+                   </tr>
+                    </thead>
+                    <tbody>
+                   
+                      <% if (typeof Alldata[0]=='object') { %>
+                        <% var i=1; %>
+                        <% if ( typeof(Alldata) !='undefined') { %>
+                        <% Alldata.forEach(function(User) { %>
+                          <tr>
+                            <td><%=i %></td>
+                            <td> <%= User.firstname %>
+                            </td>
+                            <td><%= User.lastname %></td>
+                            <td><%= User.email %></td>
+                            <td><%= User.password %></td>
+                            <td><%= User.mobile %></td>
+
+                            <% var myDate = new Date(User.Registerdate); %>  
+                            <% var registerdate=myDate.getDate(); %> 
+                            <% var registermonth=myDate.getMonth()+1; %> 
+                            <% var registeryear=myDate.getFullYear(); %>
+                            <% var createDate= registerdate + "/" + registermonth + "/" + registeryear; %>   
+                            <td><%= createDate %></td>
+
+                            
+                            
+                            <% if(User.profile_status == 1){  %>
+                              <% var User_status= "Deactivate";  %>
+                              <% var User_statusClass= "badge-danger";  %>
+                              <% }else{  %>
+                                <% var User_status= "Activate";  %>
+                                <% var User_statusClass= "badge-success";  %>
+                                <% } %>
+                               
+                            <td><a href="javascript:void(0)" class="chnage_ustatus"  data-id="<%= User.profile_status %>" data-value="<%= User.email %>"><span class="badge <%=User_statusClass %>"><%=User_status %></span></a></td>
+                           
+                          </tr>
+                         
+
+                          <% i++; }); }%>
+                          <% }%>
+                    
+                     
+
+                   
+                
+                    </tbody>
+                   
+                  </table>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <%- include footer.ejs %>
