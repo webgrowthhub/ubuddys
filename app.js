@@ -413,10 +413,14 @@ app.get('/courses',function(req, res, next) {
 
 app.get('/lesson',function(req, res, next) {
   var course_id=req.query.id;
-  var get_res=userModel.courseLecures.find({course_id : course_id ,lecture_status : 1});
+  var get_res=userModel.courseLecures.find({course_id : course_id ,lecture_status : 1}).sort({"_id": 1});
     get_res.exec((err,data)=>{
-      console.log(data);
-      res.render("lesson",{CouresData: data,usersession: req.session.user});
+     var get_res22=userModel.CoursesModel.find({_id : course_id ,course_status : 1});
+      get_res22.exec((err22,data2)=>{
+        res.render("lesson",{CouresData: data,usersession: req.session.user,coursetitle: data2});
+      })
+    
+     
     })
   
 });
