@@ -127,7 +127,9 @@
   border: 1px solid #DDD;
   padding: 20px 20px 0 20px;
   background: #FFFFFF; }
-
+  .content-item-scrollable.scrollbar-light.scroll-content {
+    height: 100% !important;
+}
 #learn-press-order-review,
 .learn-press-checkout-comment {
   margin-bottom: 20px; }
