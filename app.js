@@ -359,7 +359,7 @@ app.get('/contactus',function(req, res, next) {
 
 app.get('/mycourses',function(req, res, next) {
   
-    if(req.session.user){
+    
       var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
       getuser.exec((err,coursedata)=>{
        if(coursedata[0]){
@@ -369,13 +369,11 @@ app.get('/mycourses',function(req, res, next) {
          })
         
        }else{
-        res.render("/",{usersession: req.session.user});
+        res.render("mycourses",{usersession: req.session.user,EnrollCourse : undefined ,enrolledCourses: undefined});
        }
        
       })
-    }else{
-      res.render("/",{usersession: req.session.user});
-    }
+    
    
 
 
@@ -430,7 +428,20 @@ app.get('/single-course',function(req, res, next) {
   if(id){
     var get_res=userModel.CoursesModel.find({_id : id ,course_status : 1});
     get_res.exec((err,data)=>{
-      res.render("single-course",{CouresData: data,usersession: req.session.user});
+      var enrolledcourses=userModel.Register.find({enrollcourses: {$in: [id]}});
+      enrolledcourses.exec((en_error,Enroldata)=>{
+if(Enroldata[0]){
+  console.log(Enroldata);
+
+  res.render("single-course",{CouresData: data,usersession: req.session.user,Current_status: 1});
+}else{
+
+  res.render("single-course",{CouresData: data,usersession: req.session.user,Current_status: 0});
+}
+
+
+      })
+   
     })
   }
   

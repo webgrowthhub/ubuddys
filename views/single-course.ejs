@@ -15,14 +15,24 @@
                         </div>
                         <div class="col-sm-12 col-md-3">
                            <div class="vultur_banner_right">
+                              <% if (Current_status == 0) { %>
                               <div class="single-course-duration">
                                  <span class="course-single-price">$<%=Course.courseprice   %></span>
                               </div>
-                              <form name="purchase-course" action="/single-course" class="purchase_course" method="post">
-                                 <input type="hidden" name="purchase_course" value="<%=Course._id   %>">
-                                 <button class="lp-button button button-purchase-course">
-                                 Enroll this course				            </button>
-                              </form>
+                              <% } %>
+                              <% if (Current_status == 0) { %>
+                                 <form name="purchase-course" action="/single-course" class="purchase_course" method="post">
+                                    <input type="hidden" name="purchase_course" value="<%=Course._id   %>">
+                                    <button class="lp-button button button-purchase-course">
+                                    Enroll this course				            </button>
+                                 </form>
+
+                                    <% }else{ %>
+                                       <a href="/mycourses" class="lp-button button button-purchase-course">
+                                        Check this Course in My course Tab (Already Enrolled this course)				            </a>
+                                      
+                                 <%   } %>
+                            
                            </div>
                         </div>
                      </div>
@@ -380,16 +390,20 @@
                                        </div>
                                     </div>
                                  </div>
+                                 <% if (Current_status == 0) { %>
                                  <div class="single-course-duration">
                                     <span class="course-price price">$<%=Course.courseprice  %></span>
                                  </div>
                                  <div class="lp-course-buttons">
+                                   
                                     <form name="purchase-course" class="purchase-course" method="post">
                                        <input type="hidden" name="purchase-course" value="<%=Course._id  %>">
                                        <button class="lp-button button button-purchase-course">
                                        Buy this course        </button>
                                     </form>
+                                  
                                  </div>
+                                 <% } %>
 
 
                                  <% }) } %>
