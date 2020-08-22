@@ -10,6 +10,7 @@ var courseSechema=new mongoose.Schema({
     coursefdiscription: String,
     courseintro: String,
     courseprice: Number,
+    courseImage: String,
     addedby: String,
     course_status : { type: Number,      
         enum : [0,1],      
@@ -74,8 +75,15 @@ var PaymentsSechme=new mongoose.Schema({
     paymentId: String,
     email: String,
     amount: String,
-    course_id: String
+    course_id: String,
+    course_name: String,
+    paymentdate: { type: Date, default: Date.now },
  
+})
+
+var CourseImageSechme=new mongoose.Schema({
+    course_id: String,
+  image: String
 })
 
 
@@ -85,4 +93,5 @@ var Register = mongoose.model('regsiter',registerSechema);
 var admin= mongoose.model("admins",AdminSechema);
 var courseLecures=mongoose.model("courses_lectures",AdminCoursesSechema);
 var Payments=mongoose.model("payments",PaymentsSechme);
-module.exports= {CoursesModel,CourseCategories,Register,admin,courseLecures,conn,Payments};
+var Courses_images=mongoose.model("courseImages",CourseImageSechme);
+module.exports= {CoursesModel,CourseCategories,Register,admin,courseLecures,conn,Payments,Courses_images};

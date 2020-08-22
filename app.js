@@ -32,7 +32,7 @@ var generator = require('generate-password');
 var Razorpay = require('razorpay');
 var instance = new Razorpay({
   key_id: 'rzp_test_uipHkI2wkvuvpb',
-  key_secret: 'XUjU4aqRV3f1ChLZ21l1QyfD'
+  key_secret: 'XUjU4aqRV3f1ChLZ21l1QyfD',
 })
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -67,6 +67,22 @@ var courseVideosestorage = multer.diskStorage({
  
 })
 
+var courseImageestorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+   
+    var check_path=  path.join(__dirname, "public/courses/coursesimages");
+      fs.exists(check_path, function(exists) {
+        if(exists == false){
+           const folderName = path.join(__dirname, "public/courses/coursesimages");
+        fs.mkdirSync(folderName);
+        }
+       
+    });
+    cb(null, 'public/courses/coursesimages')
+  },
+ 
+})
+
 var AdmincourseVideosestorage = multer.diskStorage({
   destination: function (req, file, cb) {
    
@@ -83,7 +99,8 @@ var AdmincourseVideosestorage = multer.diskStorage({
  
 })
 
-var courseVideo = multer({ storage: courseVideosestorage });
+var courseVideo = multer({ storage: courseVideosestorage }).any('product_mainimage',1);;
+var courseImage=multer({storage: courseImageestorage}).array('product_mainimage',1);;
 var AdmincourseVideo = multer({ storage: AdmincourseVideosestorage });
 
 //********************check Email while registeration*************************** */
@@ -114,7 +131,7 @@ function checkEmail(req,res,next){
 
 /* GET home page. */
 app.get('/', function(req, res, next) {
-  var Allcourses=userModel.CoursesModel.find({course_status : 1}).limit(6);
+  var Allcourses=userModel.CoursesModel.find({course_status : 1}).limit(6).sort( { _id : -1} );
   Allcourses.exec((err,data)=>{
     if(req.session.user){
       var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
@@ -192,6 +209,7 @@ res.render('payment_checkout',{order_id:order_id,amount:amount});
  * Payment status*
  *****************/
 app.post('/purchase', (req,res) =>{
+  req.session.C_course_name=req.body.course_name;
   payment_id =  req.body;
   console.log("**********Payment authorized***********");
   console.log(payment_id);
@@ -201,12 +219,12 @@ app.post('/purchase', (req,res) =>{
   console.log(response); 
   console.log("**********Payment instance***********")
   instance.payments.capture(payment_id.razorpay_payment_id, response.amount).then((response) => {
-
-    var NewPay=new userModel.Payments({
+  var NewPay=new userModel.Payments({
       paymentId: response.id,
       email: req.session.user,
       amount: response.amount,
-      course_id:  req.session.purchase_course
+      course_id:  req.session.purchase_course,
+      course_name: req.session.C_course_name
     });
     NewPay.save((err,saved)=>{
       if(saved){
@@ -262,7 +280,7 @@ app.get('/admin/login',function(req, res, next) {
 
 app.get('/thankyou',function(req, res, next) {
 
-    res.render("thankyou");
+    res.render("thankyou",{usersession: req.session.user});
  
 });
 app.get('/admin/allusers',function(req, res, next) {
@@ -423,6 +441,41 @@ app.get('/lesson',function(req, res, next) {
   
 });
 
+
+
+app.get('/admin/payments',function(req, res, next) {
+  var allPayments=userModel.Payments.find({});
+  allPayments.exec((err,data)=>{
+    if(data){
+      return res.render("admin/payments",{Alldata : data});
+    }
+  })
+
+
+})
+
+app.post('/admin/payments',function(req, res, next) {
+  if(req.body.search_email != ''){
+    var allPayments=userModel.Payments.find({ email: req.body.search_email.toLowerCase()});
+  allPayments.exec((err,data)=>{
+    if(data[0]){
+      return res.render("admin/payments",{Alldata : data});
+    }else{
+      return res.render("admin/payments",{Alldata : ''});
+    }
+  })
+  }else{
+    var allPayments=userModel.Payments.find({});
+    allPayments.exec((err,data)=>{
+      if(data){
+        return res.render("admin/payments",{Alldata : data});
+      }
+    })
+  }
+
+})
+
+
 app.get('/single-course',function(req, res, next) {
   var id=req.query.id;
   if(id){
@@ -435,8 +488,30 @@ if(Enroldata[0]){
 
   res.render("single-course",{CouresData: data,usersession: req.session.user,Current_status: 1});
 }else{
+  req.session.purchase_course=req.query.id;
+  var amount= data[0].courseprice,
+  currency='INR',
+  receipt = '1234545f4',
+  payment_capture =true,
+  notes ="Payment",
+  order_id,payment_id;
 
-  res.render("single-course",{CouresData: data,usersession: req.session.user,Current_status: 0});
+  instance.orders.create({amount, currency, receipt, payment_capture, notes}).then((response) => {
+    console.log("**********Order Created***********");
+    console.log(response);
+    console.log("**********Order Created***********");
+order_id=response.id;
+
+}).catch((error) => {
+  console.log(error);
+})
+// instance.payments.capture(order_id, amount).then((response) => {
+//     console.log(response);
+// }).catch((error) => {
+//   console.log(error);
+// });
+
+  res.render("single-course",{CouresData: data,usersession: req.session.user,Current_status: 0,order_id:order_id,amount:amount});
 }
 
 
@@ -566,7 +641,52 @@ app.get('/course-details',function(req, res, next) {
 });
 
 app.get('/login',function(req, res, next) {
-  res.render("login");
+  res.render("login",{usersession : ''});
+});
+
+app.get('/admin/add-courses-image',function(req, res, next) {
+  var getCVourse=userModel.CoursesModel.find({});
+  getCVourse.exec((err,datat)=>{
+    res.render("admin/add-course-image",{AllRecords : datat});
+  })
+  
+});
+app.post("/admin/add-courses-image",(req, res) => {
+  
+  const tempPath = req.file.path;
+      
+  const targetPath = path.join(__dirname, "public/courses/coursesimages"+req.file.originalname);
+
+  if (path.extname(req.file.originalname).toLowerCase() === ".png" || path.extname(req.file.originalname).toLowerCase() === ".jpg" || path.extname(req.file.originalname).toLowerCase()
+  === ".jpeg" || path.extname(req.file.originalname).toLowerCase() === ".tiff" || path.extname(req.file.originalname).toLowerCase() === ".gif") {
+    fs.rename(tempPath, targetPath, err => {
+      if (err) return handleError(err, res);
+      var NewImage=new userModel.Courses_images({
+        course_id: req.body.course_id,
+        image: "courses/coursesimages"+req.file.originalname
+      });
+      NewImage.save((err,save)=>{
+        if(save){
+          var getCVourse=userModel.CoursesModel.find({});
+          getCVourse.exec((err,datat)=>{
+            res.render("admin/add-course-image",{AllRecords : datat, message : "Image Saved!"});
+          })
+        
+        }
+      })
+     
+    });
+  } else {
+    fs.unlink(tempPath, err => {
+      if (err) return handleError(err, res);
+
+      res
+        .status(403)
+        .contentType("text/plain")
+        .end("Only .png files are allowed!");
+    });
+  }
+ 
 });
 
 app.post('/login',function(req, res, next) {
@@ -578,7 +698,7 @@ app.post('/login',function(req, res, next) {
     if(data[0]){
       return res.redirect('courses');
     }else{
-      return  res.render('login', { message : 'Username/Password is not exist' }); 
+      return  res.render('login', { message : 'Username/Password is not exist',usersession : '' }); 
     }
    
   })
@@ -611,12 +731,17 @@ app.get('/admin/add-courses',checkAdminSession,function(req, res, next) {
   res.render("admin/add-courses");
 });
 
-app.post('/admin/add-courses',courseVideo.single("courseintro"),(req, res) => {
-  const tempPath = req.file.path;
-  var getname=req.file.originalname.substr(0, req.file.originalname.indexOf('.'));
-  const targetPath = path.join(__dirname, "public/courses/coursesvideos/"+req.file.originalname);
+app.post('/admin/add-courses',(req, res) => {
+  
+  courseVideo(req,res,function(error){
+    console.log(req.files);
+    if(req.files[0].fieldname == 'courseintro'){
+     
+     
+  const tempPath = req.files[0].path; 
+  const targetPath = path.join(__dirname, "public/courses/coursesvideos/"+req.files[0].originalname);
  
-  var FileExtenstion=path.extname(req.file.originalname).toLowerCase();
+  var FileExtenstion=path.extname(req.files[0].originalname).toLowerCase();
   if (FileExtenstion === ".mp4" || FileExtenstion === ".3gp" || FileExtenstion
   === ".ogg" || FileExtenstion === ".webm" || FileExtenstion === ".webm" 
   || FileExtenstion === ".flv" || FileExtenstion === ".avi" || FileExtenstion === ".swf"
@@ -639,12 +764,27 @@ app.post('/admin/add-courses',courseVideo.single("courseintro"),(req, res) => {
             coursefdiscription: req.body.course_fDescription,
             courseprice: req.body.coursePrice,
             addedby: req.session.adminuser,
-            courseintro: "courses/coursesvideos/"+req.file.originalname,
+            courseintro: "courses/coursesvideos/"+req.files[0].originalname,
+            courseImage: "courses/coursesimages/"+req.files[1].originalname,
           });
           NewImage.save((err,doc)=>{
                
-            
-            res.render("admin/add-courses",{message: "Saved!"});
+            const tempPath2 = req.files[1].path; 
+            const targetPath2 = path.join(__dirname, "public/courses/coursesimages/"+req.files[1].originalname);
+             
+                if (path.extname(req.files[1].originalname).toLowerCase() === ".png" || path.extname(req.files[1].originalname).toLowerCase() === ".jpg" || path.extname(req.files[1].originalname).toLowerCase()
+                === ".jpeg" || path.extname(req.files[1].originalname).toLowerCase() === ".tiff" || path.extname(req.files[1].originalname).toLowerCase() === ".gif") {
+                  fs.rename(tempPath2, targetPath2, err2 => {
+                    if (err2) return handleError(err2, res);
+
+                    
+                    res.render("admin/add-courses",{message: "Saved!"});
+
+
+
+                  })
+                }
+           
             
              
           });
@@ -665,15 +805,11 @@ app.post('/admin/add-courses',courseVideo.single("courseintro"),(req, res) => {
   }
 
 
-      // var Newcate=new userModel.CourseCategories({
-      //   coursecat: course_cat ,
-      // });
-      // Newcate.save((err,saved)=>{
-      //   if(saved){
-      //     res.render("admin/add-course",{message: "Category Saved!"});
-      //   }
-      // })
-  
+    }
+
+
+
+})
 });
 
 app.get('/admin/add-courses',function(req, res, next) {

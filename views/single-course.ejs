@@ -21,12 +21,33 @@
                               </div>
                               <% } %>
                               <% if (Current_status == 0) { %>
-                                 <form name="purchase-course" action="/single-course" class="purchase_course" method="post">
-                                    <input type="hidden" name="purchase_course" value="<%=Course._id   %>">
-                                    <button class="lp-button button button-purchase-course">
-                                    Enroll this course				            </button>
-                                 </form>
-
+                                 <% if(usersession){ %>
+                                    <form action="/purchase" method="POST" id="checkoutform">
+                                       <% if (order_id) { %>
+                                           <% var orderId=order_id; %>
+                                           <% var amount=amount; %>
+                                           <%  }  %>
+                                       <!-- Note that the amount is in paise = 50 INR -->
+                                       <script
+                                           src="https://checkout.razorpay.com/v1/checkout.js"
+                                           data-key="rzp_test_uipHkI2wkvuvpb"
+                                           data-buttontext=" Enroll this course"
+                                           data-amount= "<%= Course.courseprice *100 %>"
+                                           data-name="cash"  data-description="Purchase Description"
+                                           data-image="https://your-awesome-site.com/your_logo.jpg"
+                                           data-prefill.name=""
+                                           data-prefill.email="support@razorpay.com"
+                                           data-theme.color="#F37254"
+                                           data-order_id = "<%= orderId %>"
+                                       ></script>
+                                       <input type="hidden" value="<%= Course.coursetitle %>" name="course_name">
+                                       </form>
+                                 <% }else{ %>
+                                    <form name="purchase-course" action="/login" class="purchase_course" method="get">
+                                       <button class="lp-button button button-purchase-course">
+                                       Enroll this course				            </button>
+                                    </form>
+                               <%  } %>
                                     <% }else{ %>
                                        <a href="/mycourses" class="lp-button button button-purchase-course">
                                         Check this Course in My course Tab (Already Enrolled this course)				            </a>
@@ -394,15 +415,18 @@
                                  <div class="single-course-duration">
                                     <span class="course-price price">$<%=Course.courseprice  %></span>
                                  </div>
-                                 <div class="lp-course-buttons">
+                                 <% if(usersession){ %>
+                                    <div class="lp-course-buttons">
                                    
-                                    <form name="purchase-course" class="purchase-course" method="post">
-                                       <input type="hidden" name="purchase-course" value="<%=Course._id  %>">
-                                       <button class="lp-button button button-purchase-course">
-                                       Buy this course        </button>
-                                    </form>
-                                  
-                                 </div>
+                                       <form name="purchase-course" class="purchase-course" method="post">
+                                          <input type="hidden" name="purchase-course" value="<%=Course._id  %>">
+                                          <button class="lp-button button button-purchase-course">
+                                          Buy this course        </button>
+                                       </form>
+                                     
+                                    </div>
+                               <%  } %>
+                             
                                  <% } %>
 
 

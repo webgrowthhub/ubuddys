@@ -105,7 +105,19 @@
  <script>
 
 
+$(function(){
+   $(".razorpay-checkout-frame").load(function (){
+            alert();
+    $("#modal-close").on("click",function(){
+    alert();
+})
+});
+})
+
       $(document).ready(function(){
+
+  
+
          $( "#register_sub" ).on("click",function( event ) {
        
     var firstname= $("#reg_firstname").val();

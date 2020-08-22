@@ -31,11 +31,11 @@
                            <article>
                               <div class="blog-photo">
                                  <a href="single-course.html" class="course-permalink"><img width="400" height="300" 
-                                    src="./assets/images/breadcrumb-shop-400x300.jpg" class="attachment-course_thumbnail size-course_thumbnail wp-post-image"
+                                    src="<%=Course.courseImage  %>" class="attachment-course_thumbnail size-course_thumbnail wp-post-image"
                                     alt=""></a>
                                  <div class="course_category">
                                     <div class="cat-item">
-                                       <span class="cat-links"><a href="/single-course?id=<%=Course._id %>" rel="tag">Angular</a></span>                    
+                                       <span class="cat-links"><a href="/single-course?id=<%=Course._id %>" rel="tag"><%=Course.coursename  %></a></span>                    
                                     </div>
                                  </div>
                               </div>
