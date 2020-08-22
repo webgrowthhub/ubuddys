@@ -400,25 +400,35 @@ app.get('/mycourses',function(req, res, next) {
 });
 
 app.get('/courses',function(req, res, next) {
- 
-  var get_res=userModel.CoursesModel.find({course_status : 1});
+  var pageNo = parseInt(req.query.row);
+ if(!pageNo){
+   var skipp=0;
+ }else{
+  var skipp=pageNo;
+ }
+  var get_res=userModel.CoursesModel.find({course_status : 1}).skip(skipp).limit(10);
   get_res.exec((err,data)=>{
     if(req.session.user){
       var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
       getuser.exec((err,coursedata)=>{
+        var enrolledcourses=userModel.CoursesModel.find({course_status : 1}).countDocuments();
+        enrolledcourses.exec((en_error,Enroldata)=>{
        if(coursedata[0]){
-        // var enrolledcourses=userModel.CoursesModel.find({_id: {$in: coursedata[0].enrollcourses}});
-        // enrolledcourses.exec((en_error,Enroldata)=>{
-         
-        // })
-        res.render("courses",{CouresData: data,usersession: req.session.user,EnrollCourse : coursedata});
+       
+          res.render("courses",{CouresData: data,usersession: req.session.user,EnrollCourse : coursedata, Totalcourses: Enroldata ,currentPage: skipp});
+      
+      
        }else{
-        res.render("courses",{CouresData: data,usersession: req.session.user});
+        res.render("courses",{CouresData: data,usersession: req.session.user, Totalcourses: Enroldata,currentPage: skipp});
        }
+      })
        
       })
     }else{
-      res.render("courses",{CouresData: data,usersession: req.session.user});
+      var enrolledcourses=userModel.CoursesModel.find({course_status : 1}).countDocuments();
+      enrolledcourses.exec((en_error,Enroldata)=>{
+      res.render("courses",{CouresData: data,usersession: req.session.user,Totalcourses: Enroldata,currentPage: skipp});
+      })
     }
    
 

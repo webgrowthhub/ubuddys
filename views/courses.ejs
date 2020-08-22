@@ -79,10 +79,18 @@
             </div>
             <nav class="learn-press-pagination">
                <ul class="page-numbers">
-                  <li><a class="prev page-numbers" href="#">&lt;</a></li>
-                  <li><span aria-current="page" class="page-numbers current">1</span></li>
-                  <li><a class="page-numbers" href="#">2</a></li>
-                  <li><a class="next page-numbers" href="#">&gt;</a></li>
+                  <% if (currentPage != 0 && currentPage != 1) { %>
+                  <li><a class="prev page-numbers" href="/courses?row=<%=currentPage-10 %>"> Previous</a></li>
+                  <% } %>
+                 
+                  <!-- <% if (currentPage == 0) { %>
+                  <li><a class="page-numbers" href="#">1 of <%=Totalcourses/2 %></a></li>
+                  <% }else{ %>
+                     <li><a class="page-numbers" href="#"><%=2 * (currentPage - 1) %> of <%=Totalcourses/2 %></a></li>
+                 <% } %> -->
+                  <% if (10 * (currentPage - 1) < Totalcourses  ) { %>
+                  <li><a class="next page-numbers" href="/courses?row=<%=currentPage+10 %>">Next</a></li>
+                  <% } %>
                </ul>
             </nav>
          </div>
