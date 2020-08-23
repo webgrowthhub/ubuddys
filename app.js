@@ -725,7 +725,7 @@ app.post('/login',function(req, res, next) {
 });
 
 app.get('/signup',function(req, res, next) {
-  res.render("sign-up");
+  res.render("sign-up",{usersession : '' });
 });
 
 app.post('/signup',checkEmail,function(req, res, next) {
