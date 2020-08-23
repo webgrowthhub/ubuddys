@@ -437,6 +437,14 @@ app.get('/courses',function(req, res, next) {
   })
 });
 
+app.post('/getlession_description',function(req, res, next) {
+  var get_res=userModel.courseLecures.find({_id : req.body.id ,lecture_status : 1}).sort({"_id": 1});
+  get_res.exec((err,data)=>{
+    res.send(data[0].lecture_description);
+  })
+
+})
+
 app.get('/lesson',function(req, res, next) {
   var course_id=req.query.id;
   var get_res=userModel.courseLecures.find({course_id : course_id ,lecture_status : 1}).sort({"_id": 1});
@@ -605,7 +613,8 @@ app.get('/admin/add-lectures',checkAdminSession,function(req, res, next) {
             addedby: req.session.adminuser,
             course_id: req.body.select_courses,
             lecture_video: "courses/admin/"+req.session.adminuser+'/'+req.file.originalname,
-            lecture_description: req.body.course_fDescription,
+            lecture_title : req.body.course_fDescription,
+            lecture_description: req.body.course_fullDescription,
           });
           NewImage.save((err,doc)=>{
                

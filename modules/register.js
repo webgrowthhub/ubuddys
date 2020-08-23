@@ -64,11 +64,13 @@ var AdminCoursesSechema=new mongoose.Schema({
     addedby: String,
     course_id: String,
     lecture_video: String,
+    lecture_title: String,
     lecture_description: String,
     lecture_status : { type: Number,      
         enum : [0,1],      
         default: 1  
         },
+ addeddate: { type: Date, default: Date.now },
 })
 
 var PaymentsSechme=new mongoose.Schema({

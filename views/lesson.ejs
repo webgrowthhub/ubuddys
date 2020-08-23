@@ -61,15 +61,15 @@
                      Please select a video To Proceed
                   </div> -->
                   <div id="mediaWindow">
-                     <% if ( typeof(CouresData) !='undefined') { %>
+                     <% if (CouresData[0]) { %>
                         <video width="640" height="360" controls><source src="<%=CouresData[0].lecture_video %>" /></video>
                         
                         <% } %>
                   </div>
-                  <div>
+                  <div id="lecture_discription">
                      <% if ( typeof(coursetitle) !='undefined') { %>
-                        <a href="../../index.html"><%=coursetitle[0].coursediscription %></a>
-                        
+                        <textarea class="form-control col-sm-9" id="w3review" name="course_fDescription" rows="8" readonly ><%=coursetitle[0].coursediscription %></textarea>
+                      
                         <% } %>
 
                   </div>
@@ -80,8 +80,8 @@
                      </div>
                      <div class="next">
                         <span>Next</span>
-                        <a href="../lesson-2-copy-4/index.html">
-                        Lesson 2            </a>
+                        <!-- <a href="../lesson-2-copy-4/index.html">
+                        Lesson 2            </a> -->
                      </div>
                   </div>
                </div>
@@ -121,8 +121,8 @@
                         <% if ( typeof(CouresData) !='undefined') { %>
                            <% CouresData.forEach(function(Course) { %>
                               <li class="course-item course-item-lp_lesson course-item-2437 current item-locked">
-                                 <a class="section-item-link lecture_video" data-id="http://localhost/<%=Course.lecture_video   %>">
-                                    <span class="item-name"><%=Course.lecture_description   %></span>
+                                 <a class="section-item-link lecture_video" data-id="http://localhost/<%=Course.lecture_video   %>" data-pid="<%=Course._id %>">
+                                    <span class="item-name "><%=Course.lecture_title   %></span>
                                     <div class="course-item-meta">
                                        <i class="fa item-meta course-item-status trans"></i>
                                     </div>
@@ -135,96 +135,10 @@
                   
                      </ul>
                   </li>
-                  <!-- <li class="section" id="section-digital-marketing-techniques-14" data-id="digital-marketing-techniques-14" data-section-id="14">
-                     <div class="section-header">
-                        <div class="section-left">
-                           <h5 class="section-title">Digital marketing techniques</h5>
-                        </div>
-                     </div>
-                     <ul class="section-content">
-                        <li class="course-item course-item-lp_lesson course-item-2451 item-locked">
-                           <a class="section-item-link" href="../lesson-14-copy-4/index.html">
-                              <span class="item-name">Lesson 14</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2452 item-locked">
-                           <a class="section-item-link" href="../lesson-15-copy-4/index.html">
-                              <span class="item-name">Lesson 15</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2453 item-locked">
-                           <a class="section-item-link" href="../lesson-16-copy-4/index.html">
-                              <span class="item-name">Lesson 16</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_quiz course-item-2454 item-locked">
-                           <a class="section-item-link" href="../../quizzes/quiz-2-copy-4/index.html">
-                              <span class="item-name">Quiz 2</span>
-                              <div class="course-item-meta">
-                                 <span class="item-meta count-questions">11 questions</span><span class="item-meta duration">50 min</span>	        <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                     </ul>
-                  </li> -->
-                  <!-- <li class="section" id="section-learn-from-any-location-in-the-world-15" data-id="learn-from-any-location-in-the-world-15" data-section-id="15">
-                     <div class="section-header">
-                        <div class="section-left">
-                           <h5 class="section-title">Learn from any location in the world.</h5>
-                        </div>
-                     </div>
-                     <ul class="section-content">
-                        <li class="course-item course-item-lp_lesson course-item-2466 item-locked">
-                           <a class="section-item-link" href="../lesson-24-copy-4/index.html">
-                              <span class="item-name">Lesson 24</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_lesson course-item-2467 item-locked">
-                           <a class="section-item-link" href="../lesson-25-copy-4/index.html">
-                              <span class="item-name">Lesson 25</span>
-                              <div class="course-item-meta">
-                                 <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                        <li class="course-item course-item-lp_quiz course-item-2468 item-locked">
-                           <a class="section-item-link" href="../../quizzes/quiz-3-copy-4/index.html">
-                              <span class="item-name">Quiz 3</span>
-                              <div class="course-item-meta">
-                                 <span class="item-meta count-questions">15 questions</span><span class="item-meta duration">40 min</span>	        <i class="fa item-meta course-item-status trans"></i>
-                              </div>
-                           </a>
-                        </li>
-                     </ul>
-                  </li> -->
+                
                </ul>
             </div>
-            <!-- <div class="scroll-element scroll-x scroll-scrolly_visible">
-               <div class="scroll-element_outer">
-                  <div class="scroll-element_size"></div>
-                  <div class="scroll-element_track"></div>
-                  <div class="scroll-bar" style="width: 0px;"></div>
-               </div>
-            </div>
-            <div class="scroll-element scroll-y scroll-scrolly_visible">
-               <div class="scroll-element_outer">
-                  <div class="scroll-element_size"></div>
-                  <div class="scroll-element_track"></div>
-                  <div class="scroll-bar" style="height: 118px; top: 18.2118px;"></div>
-               </div>
-            </div> -->
+          
          </div>
       </div>
       <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
@@ -245,7 +159,17 @@
              $(function(){
                $(".lecture_video").on("click",function(){
                   var href=$(this).data("id");
+                  var idd=$(this).data("pid");
                   $("#mediaWindow").html('<video width="640" height="360" controls><source src="' + href + '" /></video>');
+                  $.ajax({
+                     type: "POST",
+                     url: "/getlession_description",
+                     data: {"id": idd },
+                     success: function(r){
+                        $("#lecture_discription").html("<textarea class='form-control col-sm-9' id='w3review' rows='8' readonly >"+r+"</textarea>");
+                     
+                     }
+                  });
                })
             })
       </script>
