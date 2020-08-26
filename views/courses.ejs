@@ -31,7 +31,7 @@
                            <article>
                               <div class="blog-photo">
                                  <a href="single-course.html" class="course-permalink"><img width="400" height="300" 
-                                    src="<%=Course.courseImage  %>" class="attachment-course_thumbnail size-course_thumbnail wp-post-image"
+                                    src="http://ubuddys.com/<%=Course.courseImage  %>" class="attachment-course_thumbnail size-course_thumbnail wp-post-image"
                                     alt=""></a>
                                  <div class="course_category">
                                     <div class="cat-item">
@@ -88,7 +88,7 @@
                   <% }else{ %>
                      <li><a class="page-numbers" href="#"><%=2 * (currentPage - 1) %> of <%=Totalcourses/2 %></a></li>
                  <% } %> -->
-                  <% if (10 * (currentPage - 1) < Totalcourses  ) { %>
+                  <% if (currentPage+1  < Totalcourses  ) { %>
                   <li><a class="next page-numbers" href="/courses?row=<%=currentPage+10 %>">Next</a></li>
                   <% } %>
                </ul>
