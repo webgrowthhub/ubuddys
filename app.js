@@ -375,6 +375,27 @@ app.get('/contactus',function(req, res, next) {
 
 });
 
+app.post('/mycourses',function(req, res, next) {
+
+var s=req.body.s;
+var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
+      getuser.exec((err,coursedata)=>{
+var searchcourses=userModel.CoursesModel.find({_id: {$in: coursedata[0].enrollcourses},'coursetitle': {'$regex': s} });
+searchcourses.exec((err,data)=>{
+  console.log(data);
+  if(data[0]){
+    res.render("mycourses",{usersession: req.session.user,EnrollCourse : coursedata ,enrolledCourses: data});
+  }else{
+    res.render("mycourses",{usersession: req.session.user,EnrollCourse : undefined ,enrolledCourses: undefined});
+  }
+ 
+})
+
+      })
+
+
+})
+
 app.get('/mycourses',function(req, res, next) {
   
     
@@ -398,6 +419,30 @@ app.get('/mycourses',function(req, res, next) {
 
 
 });
+
+app.post('/courses',function(req, res, next) {
+  var pageNo = parseInt(req.query.row);
+  
+    var skipp=0;
+  
+var s=req.body.s;
+var get_res=userModel.CoursesModel.find({course_status : 1 , 'coursetitle': {'$regex': s} });
+get_res.exec((err,getdata)=>{
+  console.log(getdata);
+  if(getdata[0]){
+    res.render("courses",{CouresData: getdata,usersession: req.session.user, Totalcourses: undefined,currentPage: skipp});
+  }else{
+    res.render("courses",{CouresData: getdata,usersession: req.session.user, Totalcourses: undefined,currentPage: skipp});
+  }
+})
+
+
+
+})
+
+
+
+
 
 app.get('/courses',function(req, res, next) {
   var pageNo = parseInt(req.query.row);
@@ -451,7 +496,8 @@ app.get('/lesson',function(req, res, next) {
     get_res.exec((err,data)=>{
      var get_res22=userModel.CoursesModel.find({_id : course_id ,course_status : 1});
       get_res22.exec((err22,data2)=>{
-        res.render("lesson",{CouresData: data,usersession: req.session.user,coursetitle: data2});
+        console.log(data2);
+        res.render("lesson",{CouresData: data,usersession: req.session.user,coursetitle: data2, totlalec: data.length });
       })
     
      
@@ -609,19 +655,31 @@ app.get('/admin/add-lectures',checkAdminSession,function(req, res, next) {
           console.log(error); 
         } 
         else { 
-          var NewImage=new userModel.courseLecures({
-            addedby: req.session.adminuser,
-            course_id: req.body.select_courses,
-            lecture_video: "courses/admin/"+req.session.adminuser+'/'+req.file.originalname,
-            lecture_title : req.body.course_fDescription,
-            lecture_description: req.body.course_fullDescription,
-          });
-          NewImage.save((err,doc)=>{
-               
-                    res.send("true");
+
+          var get_no=userModel.courseLecures.find({addedby: req.session.adminuser }).sort( { lecture_no : -1} );
+          get_no.exec((eorr,New_no)=>{
+            if(New_no[0]){
+              var lec_n=New_no[0].lecture_no+1;
+            }else{
+              var lec_n=1;
+            }
+            console.log(lec_n);
+            var NewImage=new userModel.courseLecures({
+              addedby: req.session.adminuser,
+              course_id: req.body.select_courses,
+              lecture_video: "courses/admin/"+req.session.adminuser+'/'+req.file.originalname,
+              lecture_title : req.body.course_fDescription,
+              lecture_description: req.body.course_fullDescription,
+              lecture_no: lec_n,
+            });
+            NewImage.save((err,doc)=>{
                  
-             
-          });
+                      res.send("true");
+                   
+               
+            });
+          })
+       
         } 
       }); 
    

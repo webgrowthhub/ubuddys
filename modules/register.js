@@ -50,6 +50,7 @@ var AdminSechema=new mongoose.Schema({
 })
 
 var AdminCoursesSechema=new mongoose.Schema({
+    
     addedby: String,
     course_id: String,
     lecture_video: String,
@@ -61,6 +62,7 @@ var AdminCoursesSechema=new mongoose.Schema({
 })
 
 var AdminCoursesSechema=new mongoose.Schema({
+    lecture_no: Number,
     addedby: String,
     course_id: String,
     lecture_video: String,
