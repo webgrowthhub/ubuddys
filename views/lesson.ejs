@@ -48,6 +48,11 @@
                   <% } %>
                
             </h2>
+            <div  id="course-icon">
+             
+       
+               <i class="fas fa-bars"></i>
+         </div>
             <span>
             <a class="toggle-content-item" href="/mycourses"></a>
             <form class="lp-form form-button lp-button-back" method="get" action="/mycourses">
@@ -82,10 +87,10 @@
                      </div>
                      <div class="next">
                         <span>Next</span>
-                        <!-- <a href="../lesson-2-copy-4/index.html">
+                        <a href="../lesson-2-copy-4/index.html">
                         Lesson 2            </a> -->
                      </div>
-                  </div> -->
+                  </div> 
                </div>
             </div>
             <div class="scroll-element scroll-x">
@@ -173,7 +178,16 @@
                      }
                   });
                })
-            })
+            });
+
+            $(document).ready(function(){
+               $('#course-icon').click(function() {
+                
+    $('.curriculum-scrollable').toggleClass('active');
+   
+});
+ 
+}); 
       </script>
    </body>
    <!-- Mirrored from vultur.drozd.at/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Jun 2020 10:09:14 GMT -->
