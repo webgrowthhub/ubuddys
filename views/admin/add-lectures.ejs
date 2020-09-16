@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Courses  </h1>
+            <h1>Add Lectures  </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -39,7 +39,7 @@
                   <div class="card-body">
 
                     <div class="form-group row">
-                      <label for="userid" class="col-sm-3 col-form-label">Lecture title</label>
+                      <label for="userid" class="col-sm-3 col-form-label">Course title</label>
                       <select class="form-control col-sm-9" name="select_courses" id="select_courses">
                         <% if ( typeof(Alldata) !='undefined') { %>
                           <% Alldata.forEach(function(Course) { %>
@@ -52,24 +52,24 @@
 
                     <div class="form-group row">
                       <label for="userid" class="col-sm-3 col-form-label">Lecture title </label>
-                      <textarea class="form-control col-sm-9" id="w3review" name="course_fDescription" rows="2" ></textarea>
+                      <textarea required class="form-control col-sm-9" id="w3review" name="course_fDescription" rows="2" ></textarea>
                     </div>
 
                     <div class="form-group row">
                       <label for="userid" class="col-sm-3 col-form-label">Lecture Description</label>
-                      <textarea class="form-control col-sm-9" id="w3review" name="course_fullDescription" rows="8" ></textarea>
+                      <textarea required class="form-control col-sm-9" id="w3review" name="course_fullDescription" rows="8" ></textarea>
                     </div>
 
                     <div class="form-group row">
                       <label for="userid" class="col-sm-3 col-form-label">Course Intro Video</label>
-                      <input type="file" class="form-control col-sm-9" name="courseintro" id="courseintro">
+                      <input type="file" required class="form-control col-sm-9" name="courseintro" id="courseintro">
                     </div>
 
                   </div>
                   <!-- /.card-body -->
   
                   <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Add Course</button>
+                    <button type="submit" class="btn btn-primary">Add Lecture</button>
                   </div>
                 </form>
               </div>
