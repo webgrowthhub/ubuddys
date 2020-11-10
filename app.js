@@ -131,7 +131,7 @@ function checkEmail(req,res,next){
 
 /* GET home page. */
 app.get('/', function(req, res, next) {
-  var Allcourses=userModel.CoursesModel.find({course_status : 1}).limit(6).sort( { _id : -1} );
+  var Allcourses=userModel.CoursesModel.find({course_status : 1}).limit(3).sort( { _id : -1} );
   Allcourses.exec((err,data)=>{
     if(req.session.user){
       var getuser=userModel.Register.find({email: req.session.user ,enrollcourses:{$nin:[null,""]} });
